@@ -13,13 +13,14 @@ int	main(int argc, char **argv)
 	t_game	game_dt;
 	int	error;
 
-	init(&game_dt, &errno);
-	if (!errno)
+	error = 0;
+	init(&game_dt, &error, argc, argv);
+	if (!error)
 	{
-		parse(&errno);
-		if (!errno)
-			render(&errno);
+		parse(&error);
+		if (!error)
+			render(&error);
 	}
 	destroy();
-	return (print_errno(&errno));
+	return (print_errno(&error));
 }
