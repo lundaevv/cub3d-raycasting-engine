@@ -6,6 +6,19 @@ no function prototypes here
 #ifndef TYPES_H
 #define TYPES_H
 
+#include <stdint.h>
+
+typedef enum e_cell { c_unknown, c_empty, c_wall, c_door } t_cell;
+
+// NOTE: Struct for storing curently pressed button
+typedef struct s_input {
+  double last_time;
+  int w;
+  int s;
+  int a;
+  int d;
+} t_input;
+
 // TODO: Decide should it be a double or int?
 typedef struct s_vec {
   double x;
@@ -17,7 +30,7 @@ typedef struct s_img {
   char *a;
   int bpp;
   int ll;
-  int endian;
+  int e;
   int w;
   int h;
 } t_img;
@@ -30,7 +43,7 @@ typedef struct s_map {
 
 typedef struct s_player {
   t_vec pos; /* Player position x,y */
-  t_vec dir; /* Direction vector x,y */
+  double angle;
 } t_player;
 
 typedef struct s_config {
@@ -51,10 +64,10 @@ typedef struct s_graphics {
 
 typedef struct s_mlx {
   void *context; /* MLX context handle */
-  void *window;  /* MLX window handle */
-  t_img frame;   /* MLX image buffer handle */
-  int window_w;  /* window width */
-  int window_h;  /* window height */
+  void *win;     /* MLX window handle */
+  t_img frame;   // Image which storing 1 game frame to be rendered
+  int win_w;     /* Window width */
+  int win_h;     /* Window height */
 } t_mlx;
 
 typedef struct s_game {
@@ -63,6 +76,7 @@ typedef struct s_game {
   t_config config; /* parsed config/paths/colors */
   t_map map;       /* map grid and dimensions */
   t_player player; /* player position and camera */
+  t_input inp;     /* currently pressed buttons */
 } t_game;
 
 #endif

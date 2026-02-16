@@ -6,8 +6,13 @@ if any...
 */
 
 #ifndef UTILS_H
-# define UTILS_H
+#define UTILS_H
 
-# include "types.h"
+#include "types.h"
+#include <stdint.h>
+#include <stdlib.h>
+#include <sys/time.h>
+
+double get_time_sec(void);
 
 #endif
