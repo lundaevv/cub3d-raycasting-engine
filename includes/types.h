@@ -70,6 +70,7 @@ typedef struct s_game
   t_config        config;           /* parsed config/paths/colors from .cub */
   t_map           map;              /* map grid and dimensions (2D array) */
   t_player        player;           /* player position and camera direction */
+  char				*map_path;		/* .cub file path */
 } t_game;
 
 #endif

@@ -1,23 +1,10 @@
 #include "../../includes/main.h"
 
-static int	has_cub_extension(const char *filename)
-{
-	size_t	len;
-
-	if (!filename)
-		return (0);
-	len = ft_strlen(filename);
-	if (len < 5)
-		return (0);
-	return (ft_strcmp(filename + len - 4, ".cub") == 0);
-}
-
-
-
 void	init(t_game *game_dt, int *error, int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
 	*game_dt = (t_game){0};
 	*error = ERR_OK;
+	validate_args(error, argc, argv);
+	if (*error == ERR_OK)
+		game_dt->map_path = argv[1];
 }

@@ -14,6 +14,10 @@ MLX      = $(MLXDIR)/libmlx.a
 SRC      = src/render/render_utils.c \
            src/init/init.c \
            src/init/argc.c \
+           src/parser/parse.c \
+           src/parser/config_line.c \
+           src/parser/config_utils.c \
+           src/parser/config_path.c \
            src/errors/print_msg.c \
            src/errors/print_errno.c
 
@@ -54,4 +58,3 @@ render: ${MLX} ${LIBFT} ${OBJS}
 	$(CC) renderer_main.c $(OBJS) $(CFLAGS) $(LIBFLAGS) $(MLX) $(LIBFT) -o render_exe
 
 re: fclean all
-
