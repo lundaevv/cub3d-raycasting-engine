@@ -1,4 +1,4 @@
-#include "./includes/main.h"
+#include "../../includes/main.h"
 
 static int	has_cub_extension(const char *filename)
 {
@@ -12,10 +12,12 @@ static int	has_cub_extension(const char *filename)
 	return (ft_strcmp(filename + len - 4, ".cub") == 0);
 }
 
+
+
 void	init(t_game *game_dt, int *error, int argc, char **argv)
 {
+	(void)argc;
+	(void)argv;
 	*game_dt = (t_game){0};
-	*error = 0;
-
-	if (arg)
+	*error = ERR_OK;
 }

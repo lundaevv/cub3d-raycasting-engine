@@ -9,6 +9,7 @@ enum texture id
 
 #ifndef MAIN_H
 #define MAIN_H
+
 /* Allowed functions: */
 #include <errno.h>    /* errno for perror/strerror */
 #include <fcntl.h>    /* open, O_* flags */
@@ -19,9 +20,9 @@ enum texture id
 #include <sys/time.h> /* gettimeofday */
 #include <unistd.h>   /* read, write, close */
 
-#include "../mlx/mlx.h"
-
+#include "../mlx/includes/mlx.h"
 #include "../libft/includes/libft.h"
+
 #include "config.h"
 #include "errors.h"
 #include "parser.h"

@@ -7,4 +7,6 @@ parser public API + any parser‑specific types not needed elsewhere
 
 # include "types.h"
 
+void    parse(t_game *game_dt, t_err *error);
+
 #endif

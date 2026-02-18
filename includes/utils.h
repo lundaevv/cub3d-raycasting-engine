@@ -10,4 +10,9 @@ if any...
 
 # include "types.h"
 
+void    init(t_game *game_dt, t_err *error, int argc, char **argv);
+void    destroy(t_game *game_dt);
+void    validate_args(t_err *error, int argc, char **argv);
+
+
 #endif

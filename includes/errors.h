@@ -44,4 +44,9 @@ typedef enum    e_err
     ERR_PARSE       /* generic parse error (e.g. unexpected line format) */
 }   t_err;
 
+
+int print_msg(const char *str, const char *detail, int exit_no);
+int print_errno(t_err err);
+
+
 #endif

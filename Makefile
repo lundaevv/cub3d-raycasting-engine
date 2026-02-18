@@ -11,7 +11,12 @@ LIBFT    = $(LIBFTDIR)/libft.a
 MLXDIR   = mlx
 MLX      = $(MLXDIR)/libmlx.a
 
-SRC      = src/render/render_utils.c
+SRC      = src/render/render_utils.c \
+           src/init/init.c \
+           src/init/argc.c \
+           src/errors/print_msg.c \
+           src/errors/print_errno.c
+
 
 OBJS     = $(SRC:.c=.o)
 
