@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 15:30:52 by vlundaev          #+#    #+#             */
+/*   Updated: 2026/02/25 17:50:50 by vlundaev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./includes/main.h"
 
 /*
@@ -9,19 +21,18 @@ render() should only use that state.
 destroy() should free everything, even if parse failed.
 */
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	game_dt;
 	t_err	error;
 
-	error = ERR_OK;
-	init(&game_dt, &error, argc, argv);
+	init_base(&game_dt, &error, argc, argv);
 	if (!error)
-	{
 		parse(&game_dt, &error);
-		if (!error)
-			render(&game_dt, &error);
-	}
+	if (!error)
+		init_runtime(&game_dt, &error);
+	if (!error)
+		render(&game_dt, &error);
 	destroy(&game_dt);
 	return (print_errno(error));
 }

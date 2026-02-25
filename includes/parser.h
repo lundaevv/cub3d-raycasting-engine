@@ -1,20 +1,24 @@
-/*
-parser public API + any parser‑specific types not needed elsewhere
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 15:32:47 by vlundaev          #+#    #+#             */
+/*   Updated: 2026/02/25 17:59:42 by vlundaev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
 # include "types.h"
+# include "errors.h"
 
-typedef struct s_parse_state
-{
-	int	conf_count;
-	int	in_map;
-	int	floor_set;
-	int	ceil_set;
-}	t_parse_state;
+void	parse(t_game *game_dt, t_err *error);
 
-void    parse(t_game *game_dt, t_err *error);
+/* INTERNAL PARSER FUNCTIONS */
+
 
 #endif
