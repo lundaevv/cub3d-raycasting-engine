@@ -3,7 +3,8 @@
 
 #include "types.h"
 
-int rendering(t_game game_dt);
+int render(t_game game_dt);
+int pre_render(t_game game_dt);
 int draw_minimap(int **map, t_vec player_pos);
 int draw_map(int **map, t_vec player_pos, t_img *textures_arr);
 

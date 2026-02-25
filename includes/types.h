@@ -6,6 +6,19 @@ no function prototypes here
 #ifndef TYPES_H
 #define TYPES_H
 
+#include <stdint.h>
+
+typedef enum e_cell { c_unknown, c_empty, c_wall, c_door } t_cell;
+
+// NOTE: Struct for storing curently pressed button
+typedef struct s_input {
+  double last_time;
+  int w;
+  int s;
+  int a;
+  int d;
+} t_input;
+
 // TODO: Decide should it be a double or int?
 typedef struct s_vec
 {
@@ -13,15 +26,14 @@ typedef struct s_vec
   double          y;
 } t_vec;
 
-typedef struct s_img
-{
-  void            *img;             /* mlx-image pointer (mlx_new_image()) */
-  char            *a;               /* address of the pixel-array (mlx_get_data_addr()) */
-  int             bpp;              /* bits per pixel */
-  int             ll;               /* line length (bites per line) */
-  int             endian;           /* bytes order (0/1) */
-  int             w;
-  int             h;
+typedef struct s_img {
+  void *img;
+  char *a;
+  int bpp;
+  int ll;
+  int e;
+  int w;
+  int h;
 } t_img;
 
 typedef struct s_map
@@ -31,10 +43,9 @@ typedef struct s_map
   int             rows;
 } t_map;
 
-typedef struct s_player
-{
-  t_vec           pos;              /* Player position x,y */
-  t_vec           dir;              /* Direction vector x,y */
+typedef struct s_player {
+  t_vec pos; /* Player position x,y */
+  double angle;
 } t_player;
 
 typedef struct s_config
@@ -54,23 +65,21 @@ typedef struct s_graphics
   // floor and ceiling colors
 } t_graphics;
 
-typedef struct s_mlx
-{
-  void            *context;         /* MLX context handle - result of mlx_init() */
-  void            *window;          /* MLX window handle - result of mlx_new_window */
-  t_img           frame;            /* MLX image buffer handle (in where we "draw") */
-  int             window_w;         /* window width */
-  int             window_h;         /* window height */
+typedef struct s_mlx {
+  void *context; /* MLX context handle */
+  void *win;     /* MLX window handle */
+  t_img frame;   // Image which storing 1 game frame to be rendered
+  int win_w;     /* Window width */
+  int win_h;     /* Window height */
 } t_mlx;
 
-typedef struct s_game
-{
-  t_mlx           mlx;              /* MLX handles + screen size */
-  t_graphics      graphics;         /* textures, sprites, colors, all the visuals */
-  t_config        config;           /* parsed config/paths/colors from .cub */
-  t_map           map;              /* map grid and dimensions (2D array) */
-  t_player        player;           /* player position and camera direction */
-  char				*map_path;		/* .cub file path */
+typedef struct s_game {
+  t_mlx mlx; /* MLX handles + screen size */
+  t_graphics graphics;
+  t_config config; /* parsed config/paths/colors */
+  t_map map;       /* map grid and dimensions */
+  t_player player; /* player position and camera */
+  t_input inp;     /* currently pressed buttons */
 } t_game;
 
 #endif

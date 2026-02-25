@@ -3,7 +3,7 @@ NAME    = cub3D
 
 CC      = cc
 # CFLAGS  = -Wall -Wextra -Werror -Imlx -g
-CFLAGS  = -g
+CFLAGS  = -g -std=gnu11
 LIBFLAGS = -Lmlx -lmlx -lXext -lX11 -lm
 
 LIBFTDIR = libft
@@ -11,16 +11,9 @@ LIBFT    = $(LIBFTDIR)/libft.a
 MLXDIR   = mlx
 MLX      = $(MLXDIR)/libmlx.a
 
-SRC      = src/render/render_utils.c \
-           src/init/init.c \
-           src/init/argc.c \
-           src/parser/parse.c \
-           src/parser/config_line.c \
-           src/parser/config_utils.c \
-           src/parser/config_path.c \
-           src/errors/print_msg.c \
-           src/errors/print_errno.c
-
+SRC_UTILS = src/utils/get_time_sec.c
+SRC      = $(SRC_UTILS) \
+					 src/render/render_utils.c
 
 OBJS     = $(SRC:.c=.o)
 
