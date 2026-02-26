@@ -1,5 +1,4 @@
-#include "./includes/main.h"
-
+#include "main.h"
 /*
 init → parse → render → destroy (called with errno)
 

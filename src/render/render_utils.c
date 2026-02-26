@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/rendering.h"
+#include "render.h"
 #include <stdint.h>
 
 void putp(t_img *im, int x, int y, uint32_t c) {

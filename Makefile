@@ -3,7 +3,7 @@ NAME    = cub3D
 
 CC      = cc
 # CFLAGS  = -Wall -Wextra -Werror -Imlx -g
-CFLAGS  = -g -std=gnu11
+CFLAGS  = -g -std=gnu11 -Iincludes
 LIBFLAGS = -Lmlx -lmlx -lXext -lX11 -lm
 
 LIBFTDIR = libft
@@ -11,9 +11,12 @@ LIBFT    = $(LIBFTDIR)/libft.a
 MLXDIR   = mlx
 MLX      = $(MLXDIR)/libmlx.a
 
-SRC_UTILS = src/utils/get_time_sec.c
+SRC_UTILS = src/utils/get_time_sec.c \
+						src/utils/get_cell_type.c
+SRC_RENDER = src/render/raycast.c \
+						 src/render/render_utils.c
 SRC      = $(SRC_UTILS) \
-					 src/render/render_utils.c
+					 $(SRC_RENDER)
 
 OBJS     = $(SRC:.c=.o)
 
@@ -27,6 +30,8 @@ $(MLX):
 		if [ ! -f "$(MLX)" ]; then echo "libmlx.a missing → recloning"; \
 			rm -rf "$(MLXDIR)"; \
 			git clone https://github.com/42paris/minilibx-linux.git "$(MLXDIR)"; \
+			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/Makefile.gen; \
+			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/Makefile.mk; \
 		fi; \
 		$(MAKE) -C "$(MLXDIR)"; \
 	}

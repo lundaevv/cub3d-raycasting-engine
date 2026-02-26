@@ -25,7 +25,7 @@ enum texture id
 #include "config.h"
 #include "errors.h"
 #include "parser.h"
-#include "rendering.h"
+#include "render.h"
 #include "types.h"
 #include "utils.h"
 

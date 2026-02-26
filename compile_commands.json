@@ -1,0 +1,711 @@
+[
+  {
+    "file": "src/cstd/ft_atoi.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_atoi.c",
+      "-o",
+      "obj/cstd/ft_atoi.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_atoi.o"
+  },
+  {
+    "file": "src/cstd/ft_bzero.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_bzero.c",
+      "-o",
+      "obj/cstd/ft_bzero.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_bzero.o"
+  },
+  {
+    "file": "src/cstd/ft_calloc.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_calloc.c",
+      "-o",
+      "obj/cstd/ft_calloc.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_calloc.o"
+  },
+  {
+    "file": "src/cstd/ft_isalnum.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_isalnum.c",
+      "-o",
+      "obj/cstd/ft_isalnum.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_isalnum.o"
+  },
+  {
+    "file": "src/cstd/ft_isalpha.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_isalpha.c",
+      "-o",
+      "obj/cstd/ft_isalpha.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_isalpha.o"
+  },
+  {
+    "file": "src/cstd/ft_isascii.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_isascii.c",
+      "-o",
+      "obj/cstd/ft_isascii.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_isascii.o"
+  },
+  {
+    "file": "src/cstd/ft_isdigit.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_isdigit.c",
+      "-o",
+      "obj/cstd/ft_isdigit.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_isdigit.o"
+  },
+  {
+    "file": "src/cstd/ft_isprint.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_isprint.c",
+      "-o",
+      "obj/cstd/ft_isprint.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_isprint.o"
+  },
+  {
+    "file": "src/cstd/ft_itoa.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_itoa.c",
+      "-o",
+      "obj/cstd/ft_itoa.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_itoa.o"
+  },
+  {
+    "file": "src/cstd/ft_memchr.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_memchr.c",
+      "-o",
+      "obj/cstd/ft_memchr.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_memchr.o"
+  },
+  {
+    "file": "src/cstd/ft_memcmp.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_memcmp.c",
+      "-o",
+      "obj/cstd/ft_memcmp.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_memcmp.o"
+  },
+  {
+    "file": "src/cstd/ft_memcpy.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_memcpy.c",
+      "-o",
+      "obj/cstd/ft_memcpy.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_memcpy.o"
+  },
+  {
+    "file": "src/cstd/ft_memmove.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_memmove.c",
+      "-o",
+      "obj/cstd/ft_memmove.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_memmove.o"
+  },
+  {
+    "file": "src/cstd/ft_memset.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_memset.c",
+      "-o",
+      "obj/cstd/ft_memset.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_memset.o"
+  },
+  {
+    "file": "src/cstd/ft_putchar_fd.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_putchar_fd.c",
+      "-o",
+      "obj/cstd/ft_putchar_fd.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_putchar_fd.o"
+  },
+  {
+    "file": "src/cstd/ft_putendl_fd.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_putendl_fd.c",
+      "-o",
+      "obj/cstd/ft_putendl_fd.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_putendl_fd.o"
+  },
+  {
+    "file": "src/cstd/ft_putnbr_fd.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_putnbr_fd.c",
+      "-o",
+      "obj/cstd/ft_putnbr_fd.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_putnbr_fd.o"
+  },
+  {
+    "file": "src/cstd/ft_putstr_fd.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_putstr_fd.c",
+      "-o",
+      "obj/cstd/ft_putstr_fd.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_putstr_fd.o"
+  },
+  {
+    "file": "src/cstd/ft_split.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_split.c",
+      "-o",
+      "obj/cstd/ft_split.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_split.o"
+  },
+  {
+    "file": "src/cstd/ft_strchr.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_strchr.c",
+      "-o",
+      "obj/cstd/ft_strchr.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_strchr.o"
+  },
+  {
+    "file": "src/cstd/ft_strdup.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_strdup.c",
+      "-o",
+      "obj/cstd/ft_strdup.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_strdup.o"
+  },
+  {
+    "file": "src/cstd/ft_striteri.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_striteri.c",
+      "-o",
+      "obj/cstd/ft_striteri.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_striteri.o"
+  },
+  {
+    "file": "src/cstd/ft_strjoin.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_strjoin.c",
+      "-o",
+      "obj/cstd/ft_strjoin.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_strjoin.o"
+  },
+  {
+    "file": "src/cstd/ft_strlcat.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_strlcat.c",
+      "-o",
+      "obj/cstd/ft_strlcat.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_strlcat.o"
+  },
+  {
+    "file": "src/cstd/ft_strlcpy.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_strlcpy.c",
+      "-o",
+      "obj/cstd/ft_strlcpy.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_strlcpy.o"
+  },
+  {
+    "file": "src/cstd/ft_strlen.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_strlen.c",
+      "-o",
+      "obj/cstd/ft_strlen.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_strlen.o"
+  },
+  {
+    "file": "src/cstd/ft_strmapi.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_strmapi.c",
+      "-o",
+      "obj/cstd/ft_strmapi.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_strmapi.o"
+  },
+  {
+    "file": "src/cstd/ft_strncmp.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_strncmp.c",
+      "-o",
+      "obj/cstd/ft_strncmp.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_strncmp.o"
+  },
+  {
+    "file": "src/cstd/ft_strnstr.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_strnstr.c",
+      "-o",
+      "obj/cstd/ft_strnstr.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_strnstr.o"
+  },
+  {
+    "file": "src/cstd/ft_strrchr.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_strrchr.c",
+      "-o",
+      "obj/cstd/ft_strrchr.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_strrchr.o"
+  },
+  {
+    "file": "src/cstd/ft_strtrim.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_strtrim.c",
+      "-o",
+      "obj/cstd/ft_strtrim.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_strtrim.o"
+  },
+  {
+    "file": "src/cstd/ft_substr.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_substr.c",
+      "-o",
+      "obj/cstd/ft_substr.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_substr.o"
+  },
+  {
+    "file": "src/cstd/ft_tolower.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_tolower.c",
+      "-o",
+      "obj/cstd/ft_tolower.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_tolower.o"
+  },
+  {
+    "file": "src/cstd/ft_toupper.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_toupper.c",
+      "-o",
+      "obj/cstd/ft_toupper.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_toupper.o"
+  },
+  {
+    "file": "src/printf/ft_printf.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/printf/ft_printf.c",
+      "-o",
+      "obj/printf/ft_printf.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/printf/ft_printf.o"
+  },
+  {
+    "file": "src/printf/ft_printf_utils.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/printf/ft_printf_utils.c",
+      "-o",
+      "obj/printf/ft_printf_utils.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/printf/ft_printf_utils.o"
+  },
+  {
+    "file": "src/gnl/get_next_line.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/gnl/get_next_line.c",
+      "-o",
+      "obj/gnl/get_next_line.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/gnl/get_next_line.o"
+  },
+  {
+    "file": "src/utils/get_time_sec.c",
+    "arguments": [
+      "cc",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-c",
+      "-o",
+      "src/utils/get_time_sec.o",
+      "src/utils/get_time_sec.c"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "src/utils/get_time_sec.o"
+  },
+  {
+    "file": "src/utils/get_cell_type.c",
+    "arguments": [
+      "cc",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-c",
+      "-o",
+      "src/utils/get_cell_type.o",
+      "src/utils/get_cell_type.c"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "src/utils/get_cell_type.o"
+  },
+  {
+    "file": "src/render/raycast.c",
+    "arguments": [
+      "cc",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-c",
+      "-o",
+      "src/render/raycast.o",
+      "src/render/raycast.c"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "src/render/raycast.o"
+  },
+  {
+    "file": "src/render/render_utils.c",
+    "arguments": [
+      "cc",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-c",
+      "-o",
+      "src/render/render_utils.o",
+      "src/render/render_utils.c"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "src/render/render_utils.o"
+  },
+  {
+    "file": "renderer_main.c",
+    "arguments": [
+      "cc",
+      "renderer_main.c",
+      "src/utils/get_time_sec.o",
+      "src/utils/get_cell_type.o",
+      "src/render/raycast.o",
+      "src/render/render_utils.o",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "mlx/libmlx.a",
+      "libft/libft.a",
+      "-o",
+      "render_exe"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "render_exe"
+  }
+]

@@ -9,8 +9,12 @@ sprites' path
 keycodes
 */
 
+#include "math.h"
+
 // Tile sizes
 #define TILE_SIZE 40
+#define FOV M_PI_2
+#define WORLD_HEIGHT 1
 // Map textures
 #define TEXTURE_EMPTY "textures/tiles/empty.xpm"
 #define TEXTURE_WALL "textures/tiles/wall.xpm"

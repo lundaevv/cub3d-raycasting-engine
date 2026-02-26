@@ -3,10 +3,13 @@
 
 # Libraries
 *.a
+mlx
+mlx/*
 
 # Executables
 cub3D
 a.out
+*exe
 
 # Object / binary directories
 obj/
@@ -32,3 +35,6 @@ vgcore.*
 
 # Tests
 *.txt
+
+#Cache
+.cache
