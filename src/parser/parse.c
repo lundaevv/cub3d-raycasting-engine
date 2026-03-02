@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:31:26 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/02 14:46:57 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/02 21:14:07 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ void	parse(t_game *game_dt, t_err *error)
 	if (*error != ERR_OK)
 		return ;
 	parse_config(lines, game_dt, error);
+	if (*error == ERR_OK)
+		parse_map(lines, game_dt, error);
 	free_lines(lines);
 }

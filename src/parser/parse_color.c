@@ -6,9 +6,84 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 19:31:04 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/02 19:31:14 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/02 21:11:44 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+static int	is_valid_rgb_value(int n)
+{
+	return (n >= 0 && n <= 255);
+}
+
+static int	count_parts(char **parts)
+{
+	int	count;
+
+	count = 0;
+	while (parts[count])
+		count++;
+	return (count);
+}
+
+static int	is_strict_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && ft_isspace(str[i]))
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i] && !ft_isspace(str[i]))
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	while (str[i])
+	{
+		if (!ft_isspace(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static int	parse_rgb_values(char **parts, int *r, int *g, int *b)
+{
+	if (!is_strict_number(parts[0]) || !is_strict_number(parts[1])
+		|| !is_strict_number(parts[2]))
+		return (0);
+	*r = ft_atoi(parts[0]);
+	*g = ft_atoi(parts[1]);
+	*b = ft_atoi(parts[2]);
+	if (!is_valid_rgb_value(*r) || !is_valid_rgb_value(*g)
+		|| !is_valid_rgb_value(*b))
+		return (0);
+	return (1);
+}
+
+int	parse_rgb_color(char *value, int *out_color)
+{
+	char	**parts;
+	int		r;
+	int		g;
+	int		b;
+
+	parts = ft_split(value, ',');
+	if (!parts || count_parts(parts) != 3)
+	{
+		free_strs(parts);
+		return (0);
+	}
+	if (!parse_rgb_values(parts, &r, &g, &b))
+	{
+		free_strs(parts);
+		return (0);
+	}
+	*out_color = (r << 16) | (g << 8) | b;
+	free_strs(parts);
+	return (1);
+}

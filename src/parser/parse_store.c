@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 19:08:49 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/02 19:29:46 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/02 21:04:38 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,34 @@ static int	validate_texture_path(char *path)
 	return (1);
 }
 
+static int	store_texture(int id, char *value, t_game *game_dt, t_err *error)
+{
+	if (!validate_texture_path(value))
+	{
+		free(value);
+		*error = ERR_CONF_PATH;
+		return (0);
+	}
+	set_texture_path(&game_dt->config, id, value);
+	return (1);
+}
+
+static int	store_color(int id, char *value, t_game *game_dt, t_err *error)
+{
+	int	color;
+
+	if (!parse_rgb_color(value, &color))
+	{
+		*error = ERR_CONF_COLOR;
+		return (0);
+	}
+	if (id == 4)
+		game_dt->config.floor_rgb = color;
+	else
+		game_dt->config.ceil_rgb = color;
+	return (1);
+}
+
 int	store_config_value(char *line, int id, t_game *game_dt, t_err *error)
 {
 	char	*value;
@@ -50,16 +78,12 @@ int	store_config_value(char *line, int id, t_game *game_dt, t_err *error)
 		return (0);
 	}
 	if (id < 4)
+		return (store_texture(id, value, game_dt, error));
+	if (!store_color(id, value, game_dt, error))
 	{
-		if (!validate_texture_path(value))
-		{
-			free(value);
-			*error = ERR_CONF_PATH;
-			return (0);
-		}
-		set_texture_path(&game_dt->config, id, value);
-	}
-	else
 		free(value);
+		return (0);
+	}
+	free(value);
 	return (1);
 }

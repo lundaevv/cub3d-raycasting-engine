@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:02:30 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/02 19:22:10 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/02 21:07:30 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,19 @@ char	*dup_trimmed_str(char *str)
 	if (!str)
 		return (NULL);
 	return (ft_strtrim(str, " \t\n\r\v\f"));
+}
+
+void	free_strs(char **strs)
+{
+	int	i;
+
+	if (!strs)
+		return ;
+	i = 0;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
 }

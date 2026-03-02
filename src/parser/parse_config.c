@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:01:47 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/02 19:20:06 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/02 20:44:54 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	check_config_block(char **lines, int start,
 			i++;
 	}
 	if (*error == ERR_OK && (!seen[0] || !seen[1] || !seen[2]
-		|| !seen[3] || !seen[4] || !seen[5]))
+			|| !seen[3] || !seen[4] || !seen[5]))
 		*error = ERR_CONF_MISS;
 }
 
