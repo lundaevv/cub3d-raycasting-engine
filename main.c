@@ -6,19 +6,26 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:30:52 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 17:50:50 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/02 14:50:12 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/main.h"
+#include "main.h"
 
 /*
-init → parse → render → destroy (called with errno)
+init_game → parse → init_graphics → render → destroy (called with errno)
 
-init() should set up shared state (mlx, textures, config).
-parse() should fill a shared t_game/t_config.
-render() should only use that state.
-destroy() should free everything, even if parse failed.
+init_game()		-	only zero the t_game, set ERR_OK, validate argc/extension,
+					store map_path.
+parse()			-	open/read .cub, parse texture/color directives,
+					collect raw map lines, validate the map, normalize it,
+					extract player spawn/direction, and fill game_dt->config,
+					game_dt->map, and game_dt->player.
+int_graphics	-	Only after parse succeeds:
+					MLX init, window, images, texture loading
+					from the parsed paths.
+render()		-	use already-parsed state only. No file parsing here.
+destroy()		-	free parser allocations even if runtime never started.
 */
 
 int	main(int argc, char **argv)
@@ -26,11 +33,11 @@ int	main(int argc, char **argv)
 	t_game	game_dt;
 	t_err	error;
 
-	init_base(&game_dt, &error, argc, argv);
+	init_game(&game_dt, &error, argc, argv);
 	if (!error)
 		parse(&game_dt, &error);
 	if (!error)
-		init_runtime(&game_dt, &error);
+		init_graphics(&game_dt, &error);
 	if (!error)
 		render(&game_dt, &error);
 	destroy(&game_dt);

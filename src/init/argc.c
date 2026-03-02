@@ -6,11 +6,11 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:31:43 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 15:34:19 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/02 13:37:49 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/main.h"
+#include "main.h"
 
 static int	has_cube_extension(const char *filename)
 {

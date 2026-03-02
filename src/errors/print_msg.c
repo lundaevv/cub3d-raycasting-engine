@@ -6,11 +6,11 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:31:49 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 15:35:30 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/02 13:38:00 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/main.h"
+#include "main.h"
 
 int	print_msg(const char *str, const char *detail, int exit_no)
 {

@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 15:31:40 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/02 13:36:55 by vlundaev         ###   ########.fr       */
+/*   Created: 2026/03/02 15:05:19 by vlundaev          #+#    #+#             */
+/*   Updated: 2026/03/02 15:58:58 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
-void	init_game(t_game *game_dt, t_err *error, int argc, char **argv)
+int	ft_isspace(int c)
 {
-	*game_dt = (t_game){0};
-	*error = ERR_OK;
-	validate_args(error, argc, argv);
-	if (*error == ERR_OK)
-		game_dt->map_path = argv[1];
+	return (c == ' ' || (c >= 9 && c <= 13));
 }

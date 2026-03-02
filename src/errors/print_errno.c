@@ -6,11 +6,11 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:31:52 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 15:39:00 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/02 18:17:07 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/main.h"
+#include "main.h"
 
 static const char	*msg_for_err(t_err err)
 {
@@ -28,5 +28,5 @@ int	print_errno(t_err err)
 {
 	if (err == ERR_OK)
 		return (0);
-	return (print_msg(ERR_FMT, msg_for_err(err), 1));
+	return (print_msg(ERR_FMT, msg_for_err(err), err));
 }

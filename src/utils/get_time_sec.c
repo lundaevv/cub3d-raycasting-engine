@@ -6,11 +6,11 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:31:11 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 15:36:24 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/02 13:37:15 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/utils.h"
+#include "utils.h"
 
 double	get_time_sec(void)
 {
