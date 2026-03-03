@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   init_graphics.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 15:32:37 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/03 19:46:20 by vlundaev         ###   ########.fr       */
+/*   Created: 2026/03/03 19:48:34 by vlundaev          #+#    #+#             */
+/*   Updated: 2026/03/03 19:48:53 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
-# include "types.h"
-# include "errors.h"
-# include <sys/time.h>
-# include <stdlib.h>
-
-double	get_time_sec(void);
-
-void	init_game(t_game *game_dt, t_err *error, int argc, char **argv);
-void	init_graphics(t_game *game_dt, t_err *error);
-void	destroy(t_game *game_dt);
-void	validate_args(t_err *error, int argc, char **argv);
-
-#endif
+void	init_graphics(t_game *game_dt, t_err *error)
+{
+	if (!game_dt || !error)
+		return ;
+}

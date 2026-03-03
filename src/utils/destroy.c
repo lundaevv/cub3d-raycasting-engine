@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 15:31:26 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/03 19:23:26 by vlundaev         ###   ########.fr       */
+/*   Created: 2026/03/03 19:32:06 by vlundaev          #+#    #+#             */
+/*   Updated: 2026/03/03 19:37:48 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "utils.h"
 #include "parser.h"
 
-void	parse(t_game *game_dt, t_err *error)
+void	destroy(t_game *game_dt)
 {
-	char	**lines;
-
-	if (!game_dt || !error)
+	if (!game_dt)
 		return ;
-	lines = parse_file(game_dt, error);
-	if (*error != ERR_OK)
-		return ;
-	parse_config(lines, game_dt, error);
-	if (*error == ERR_OK)
-		parse_map(lines, game_dt, error);
-	free_lines(lines);
+	free(game_dt->config.path_nw);
+	free(game_dt->config.path_sw);
+	free(game_dt->config.path_ww);
+	free(game_dt->config.path_ew);
+	free_lines(game_dt->map.grid);
+	game_dt->config.path_nw = NULL;
+	game_dt->config.path_sw = NULL;
+	game_dt->config.path_ww = NULL;
+	game_dt->config.path_ew = NULL;
+	game_dt->map.grid = NULL;
+	game_dt->map.rows = 0;
+	game_dt->map.cols = 0;
 }

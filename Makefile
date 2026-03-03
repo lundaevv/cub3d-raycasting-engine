@@ -5,29 +5,61 @@
 #                                                     +:+ +:+         +:+      #
 #    By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/02/25 15:30:59 by vlundaev          #+#    #+#              #
-#    Updated: 2026/02/25 15:31:00 by vlundaev         ###   ########.fr        #
+#    Created: 2026/03/03 19:41:52 by vlundaev          #+#    #+#              #
+#    Updated: 2026/03/03 19:50:36 by vlundaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Makefile
-NAME    = cub3D
+NAME = cub3D
 
-CC      = cc
-# CFLAGS  = -Wall -Wextra -Werror -Imlx -g
-CFLAGS  = -g -std=gnu11
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g -std=gnu11 -Iincludes -Ilibft/includes -Imlx
 LIBFLAGS = -Lmlx -lmlx -lXext -lX11 -lm
 
 LIBFTDIR = libft
-LIBFT    = $(LIBFTDIR)/libft.a
-MLXDIR   = mlx
-MLX      = $(MLXDIR)/libmlx.a
+LIBFT = $(LIBFTDIR)/libft.a
+MLXDIR = mlx
+MLX = $(MLXDIR)/libmlx.a
 
-SRC_UTILS = src/utils/get_time_sec.c
-SRC      = $(SRC_UTILS) \
-					 src/render/render_utils.c
+SRC_INIT = \
+	src/init/init.c \
+	src/init/argc.c	\
+	src/init/init_graphics.c
 
-OBJS     = $(SRC:.c=.o)
+SRC_UTILS = \
+	src/utils/get_time_sec.c \
+	src/utils/destroy.c
+
+SRC_ERRORS = \
+	src/errors/print_msg.c \
+	src/errors/print_errno.c
+
+SRC_PARSER = \
+	src/parser/parse.c \
+	src/parser/parse_file.c \
+	src/parser/parse_config.c \
+	src/parser/parse_config_utils.c \
+	src/parser/parse_store.c \
+	src/parser/parse_color.c \
+	src/parser/parse_utils.c \
+	src/parser/parse_map.c \
+	src/parser/parse_map_utils.c \
+	src/parser/parse_map_validate.c \
+	src/parser/parse_map_normalize.c \
+	src/parser/parse_map_closed.c \
+	src/parser/parse_player.c
+
+SRC_RENDER = \
+	src/render/render.c
+
+SRC = main.c \
+	$(SRC_INIT) \
+	$(SRC_UTILS) \
+	$(SRC_ERRORS) \
+	$(SRC_PARSER) \
+	$(SRC_RENDER)
+
+OBJS = $(SRC:.c=.o)
 
 all: $(NAME)
 
@@ -36,7 +68,7 @@ $(LIBFT):
 
 $(MLX):
 	@{ \
-		if [ ! -f "$(MLX)" ]; then echo "libmlx.a missing → recloning"; \
+		if [ ! -f "$(MLX)" ]; then echo "libmlx.a missing -> recloning"; \
 			rm -rf "$(MLXDIR)"; \
 			git clone https://github.com/42paris/minilibx-linux.git "$(MLXDIR)"; \
 		fi; \
@@ -44,7 +76,7 @@ $(MLX):
 	}
 
 $(NAME): $(MLX) $(LIBFT) $(OBJS)
-	$(CC) $(OBJS) main.c $(CFLAGS) $(LIBFLAGS) $(MLX) $(LIBFT) -o $(NAME)
+	$(CC) $(OBJS) $(CFLAGS) $(LIBFLAGS) $(MLX) $(LIBFT) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)
@@ -55,11 +87,8 @@ fclean: clean
 	$(MAKE) -C $(LIBFTDIR) fclean
 
 mlxDel:
-	rm -rf mlx
+	rm -rf $(MLXDIR)
 
 allClean: fclean mlxDel
-
-render: ${MLX} ${LIBFT} ${OBJS}
-	$(CC) renderer_main.c $(OBJS) $(CFLAGS) $(LIBFLAGS) $(MLX) $(LIBFT) -o render_exe
 
 re: fclean all

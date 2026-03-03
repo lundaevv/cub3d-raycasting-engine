@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:56 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 16:12:55 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/03 18:36:46 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ textures
 sprites' path
 keycodes
 */
+
+# define PI 3.14159265358979323846
 
 // Tile sizes
 # define TILE_SIZE 40

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rendering.h                                        :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:44 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 15:48:51 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:43:52 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define RENDER_H
 
 # include "types.h"
+# include "errors.h"
 
-int				render(t_game *game_dt, int *error);
+int				render(t_game *game_dt, t_err *error);
 int				pre_render(t_game game_dt);
 int				draw_minimap(int **map, t_vec player_pos);
 int				draw_map(int **map, t_vec player_pos, t_img *textures_arr);

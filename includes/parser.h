@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:47 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/02 21:12:49 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/03 19:12:52 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,24 @@ int		is_empty_line(char *line);
 int		skip_empty_lines(char **lines);
 char	*dup_trimmed_str(char *str);
 void	free_strs(char **strs);
+
+/* parse_map_utils.c*/
+int		get_max_map_width(char **grid);
+int		is_map_char(char c);
+int		validate_map_chars(char **grid);
+int		is_player_char(char c);
+int		count_players(char **grid);
+
+/* parse_map_validate.c */
+int		validate_loaded_map(t_game *game_dt, t_err *error);
+
+/* parse_player.c */
+int		extract_player(t_game *game_dt);
+
+/* parse_map_normalize.c */
+int		normalize_map(t_game *game_dt);
+
+/* parse_map_closed.c */
+int		is_map_closed(t_map *map);
 
 #endif
