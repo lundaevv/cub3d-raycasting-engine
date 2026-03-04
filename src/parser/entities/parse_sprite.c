@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argc.c                                             :+:      :+:    :+:   */
+/*   parse_sprite.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 15:31:43 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/02 13:37:49 by vlundaev         ###   ########.fr       */
+/*   Created: 2026/03/04 16:18:06 by vlundaev          #+#    #+#             */
+/*   Updated: 2026/03/04 16:23:06 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
-#include "libft.h"
+#include "parser.h"
 
-static int	has_cube_extension(const char *filename)
+int	count_sprites(t_map *map)
 {
-	size_t	len;
+	int	i;
+	int	j;
+	int	count;
 
-	if (!filename)
-		return (0);
-	len = ft_strlen(filename);
-	if (len < 5)
-		return (0);
-	return (ft_strncmp(filename + len - 4, ".cub", 4) == 0);
-}
-
-void	validate_args(t_err *error, int argc, char **argv)
-{
-	if (argc != 2)
+	i = 0;
+	count = 0;
+	while (i < map->rows)
 	{
-		*error = ERR_ARGS;
-		return ;
+		j = 0;
+		while (j < map->cols)
+		{
+			if (map->grid[i][j] == 'A')
+				count++;
+			j++;
+		}
+		i++;
 	}
-	if (!has_cube_extension(argv[1]))
-		*error = ERR_EXT;
+	return (count);
 }

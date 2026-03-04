@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "errors.h"
+#include "libft.h"
 
 int	print_msg(const char *str, const char *detail, int exit_no)
 {

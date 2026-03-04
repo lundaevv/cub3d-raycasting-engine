@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:02:14 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/03 19:23:42 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/04 19:55:38 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,12 @@ static int	find_map_start(char **lines)
 			i++;
 		else if (get_config_id(lines[i]) >= 0)
 			i++;
-		else
+		else if (is_map_line(lines[i]))
 			return (i);
+		else
+			return (-2);
 	}
 	return (-1);
-}
-
-static int	count_map_lines(char **lines, int start, t_err *error)
-{
-	int	count;
-	int	i;
-
-	count = 0;
-	i = start;
-	while (lines[i])
-	{
-		if (is_empty_line(lines[i]))
-		{
-			*error = ERR_MAP_EMPTY;
-			return (0);
-		}
-		count++;
-		i++;
-	}
-	return (count);
 }
 
 static void	free_map_copy(char **grid, int count)
@@ -86,6 +68,21 @@ static int	copy_map_lines(char **lines, int start, int count, t_game *game_dt)
 	return (1);
 }
 
+static int	validate_map_start(int start, t_err *error)
+{
+	if (start == -1)
+	{
+		*error = ERR_MAP_EMPTY;
+		return (0);
+	}
+	if (start == -2)
+	{
+		*error = ERR_PARSE;
+		return (0);
+	}
+	return (1);
+}
+
 void	parse_map(char **lines, t_game *game_dt, t_err *error)
 {
 	int	start;
@@ -94,11 +91,8 @@ void	parse_map(char **lines, t_game *game_dt, t_err *error)
 	if (!lines || !game_dt || !error)
 		return ;
 	start = find_map_start(lines);
-	if (start < 0)
-	{
-		*error = ERR_MAP_EMPTY;
+	if (!validate_map_start(start, error))
 		return ;
-	}
 	count = count_map_lines(lines, start, error);
 	if (*error != ERR_OK)
 		return ;

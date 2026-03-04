@@ -6,13 +6,13 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:01:47 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/03 19:23:51 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/04 19:53:42 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static int	register_config(int seen[6], char *line,
+static int	register_config(int seen[9], char *line,
 	t_game *game_dt, t_err *error)
 {
 	int		id;
@@ -31,30 +31,39 @@ static int	register_config(int seen[6], char *line,
 	return (1);
 }
 
+static void	init_seen(int seen[9])
+{
+	int	i;
+
+	i = 0;
+	while (i < 9)
+	{
+		seen[i] = 0;
+		i++;
+	}
+}
+
 static void	check_config_block(char **lines, int start,
 	t_game *game_dt, t_err *error)
 {
 	int	i;
-	int	seen[6];
+	int	seen[9];
 
-	seen[0] = 0;
-	seen[1] = 0;
-	seen[2] = 0;
-	seen[3] = 0;
-	seen[4] = 0;
-	seen[5] = 0;
+	init_seen(seen);
 	i = start;
 	while (lines[i] && *error == ERR_OK)
 	{
 		if (is_empty_line(lines[i]))
 			i++;
-		else if (!register_config(seen, lines[i], game_dt, error))
+		else if (is_map_line(lines[i]))
 			break ;
+		else if (!register_config(seen, lines[i], game_dt, error))
+			*error = ERR_PARSE;
 		else
 			i++;
 	}
-	if (*error == ERR_OK && (!seen[0] || !seen[1] || !seen[2]
-			|| !seen[3] || !seen[4] || !seen[5]))
+	if (*error == ERR_OK && (!seen[0] || !seen[1] || !seen[2] || !seen[3]
+			|| !seen[7] || !seen[8]))
 		*error = ERR_CONF_MISS;
 }
 

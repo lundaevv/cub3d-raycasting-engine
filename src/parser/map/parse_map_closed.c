@@ -6,16 +6,11 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 19:11:36 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/03 19:47:10 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/04 14:51:33 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-static int	is_open_tile(char c)
-{
-	return (c == '0' || c == 'D');
-}
 
 static int	touches_void(t_map *map, int row, int col)
 {
@@ -45,7 +40,7 @@ int	is_map_closed(t_map *map)
 		j = 0;
 		while (j < map->cols)
 		{
-			if (is_open_tile(map->grid[i][j]) && touches_void(map, i, j))
+			if (is_walkable_tile(map->grid[i][j]) && touches_void(map, i, j))
 				return (0);
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:41 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 17:21:42 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/04 19:26:25 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ typedef struct s_config
 	char					*path_sw;		/* texture path: South wall */
 	char					*path_ww;		/* texture path: West wall */
 	char					*path_ew;		/* texture path: East wall */
+	char					*path_door_closed;
+	char					*path_door_open;
+	char					*path_sprite_anim;
 	int						floor_rgb;		/* floor color as 0xRRGGBB */
 	int						ceil_rgb;		/* ceiling color as 0xRRGGBB */
 }	t_config;

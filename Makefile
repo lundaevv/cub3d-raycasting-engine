@@ -6,7 +6,7 @@
 #    By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 19:41:52 by vlundaev          #+#    #+#              #
-#    Updated: 2026/03/03 19:50:36 by vlundaev         ###   ########.fr        #
+#    Updated: 2026/03/04 20:12:43 by vlundaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,18 +36,22 @@ SRC_ERRORS = \
 
 SRC_PARSER = \
 	src/parser/parse.c \
-	src/parser/parse_file.c \
-	src/parser/parse_config.c \
-	src/parser/parse_config_utils.c \
-	src/parser/parse_store.c \
-	src/parser/parse_color.c \
 	src/parser/parse_utils.c \
-	src/parser/parse_map.c \
-	src/parser/parse_map_utils.c \
-	src/parser/parse_map_validate.c \
-	src/parser/parse_map_normalize.c \
-	src/parser/parse_map_closed.c \
-	src/parser/parse_player.c
+	src/parser/parse_file.c \
+	src/parser/config/parse_config.c \
+	src/parser/config/parse_config_utils.c \
+	src/parser/config/parse_config_store.c \
+	src/parser/config/parse_config_color.c \
+	src/parser/map/parse_map.c \
+	src/parser/map/parse_map_utils.c \
+	src/parser/map/parse_map_validate.c \
+	src/parser/map/parse_map_normalize.c \
+	src/parser/map/parse_map_closed.c \
+	src/parser/map/parse_map_tail.c \
+	src/parser/entities/parse_player.c \
+	src/parser/entities/parse_door.c \
+	src/parser/entities/parse_tile.c \
+	src/parser/entities/parse_sprite.c
 
 SRC_RENDER = \
 	src/render/render.c

@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argc.c                                             :+:      :+:    :+:   */
+/*   parse_tile.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 15:31:43 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/02 13:37:49 by vlundaev         ###   ########.fr       */
+/*   Created: 2026/03/04 14:50:19 by vlundaev          #+#    #+#             */
+/*   Updated: 2026/03/04 17:42:00 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
-#include "libft.h"
+#include "parser.h"
 
-static int	has_cube_extension(const char *filename)
+int	is_wall(char c)
 {
-	size_t	len;
-
-	if (!filename)
-		return (0);
-	len = ft_strlen(filename);
-	if (len < 5)
-		return (0);
-	return (ft_strncmp(filename + len - 4, ".cub", 4) == 0);
+	return (c == '1');
 }
 
-void	validate_args(t_err *error, int argc, char **argv)
+int	is_walkable_tile(char c)
 {
-	if (argc != 2)
-	{
-		*error = ERR_ARGS;
-		return ;
-	}
-	if (!has_cube_extension(argv[1]))
-		*error = ERR_EXT;
+	return (c == '0' || c == 'D' || c == 'A');
+}
+
+int	is_map_char(char c)
+{
+	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E'
+		|| c == 'W' || c == ' ' || c == 'D' || c == 'A');
+}
+
+int	is_player_char(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }

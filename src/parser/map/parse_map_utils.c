@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:04:14 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/03 19:23:45 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/04 19:24:19 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ int	get_max_map_width(char **grid)
 	return (max);
 }
 
-int	is_map_char(char c)
-{
-	return (c == '0' || c == '1' || c == 'N'
-		|| c == 'S' || c == 'E' || c == 'W' || c == ' ');
-}
-
 int	validate_map_chars(char **grid)
 {
 	int	i;
@@ -54,11 +48,6 @@ int	validate_map_chars(char **grid)
 		i++;
 	}
 	return (1);
-}
-
-int	is_player_char(char c)
-{
-	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
 int	count_players(char **grid)
@@ -81,4 +70,24 @@ int	count_players(char **grid)
 		i++;
 	}
 	return (count);
+}
+
+int	is_map_line(char *line)
+{
+	int	i;
+	int	has_tile;
+
+	if (!line)
+		return (0);
+	i = 0;
+	has_tile = 0;
+	while (line[i] && line[i] != '\n')
+	{
+		if (!is_map_char(line[i]))
+			return (0);
+		if (line[i] != ' ')
+			has_tile = 1;
+		i++;
+	}
+	return (has_tile);
 }

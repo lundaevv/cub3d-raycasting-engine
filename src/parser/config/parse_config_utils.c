@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 18:56:05 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/03 19:23:52 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/04 16:27:20 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,16 @@ int	get_config_id(char *line)
 		return (2);
 	if (!ft_strncmp(&line[i], "EA", 2) && ft_isspace(line[i + 2]))
 		return (3);
-	if (line[i] == 'F' && ft_isspace(line[i + 1]))
+	if (!ft_strncmp(&line[i], "DC", 2) && ft_isspace(line[i + 2]))
 		return (4);
-	if (line[i] == 'C' && ft_isspace(line[i + 1]))
+	if (!ft_strncmp(&line[i], "DO", 2) && ft_isspace(line[i + 2]))
 		return (5);
+	if (!ft_strncmp(&line[i], "SP", 2) && ft_isspace(line[i + 2]))
+		return (6);
+	if (line[i] == 'F' && ft_isspace(line[i + 1]))
+		return (7);
+	if (line[i] == 'C' && ft_isspace(line[i + 1]))
+		return (8);
 	return (-1);
 }
 

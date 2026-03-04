@@ -6,21 +6,12 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:56 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/03 18:36:46 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/04 19:58:10 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONFIG_H
 # define CONFIG_H
-
-/*
-tile size
-wall height
-door?
-textures
-sprites' path
-keycodes
-*/
 
 # define PI 3.14159265358979323846
 
@@ -40,8 +31,8 @@ keycodes
 #  define KEY_PRESS 2
 #  define KEY_RELEASE 3
 #  define DESTROY_NOTIFY 17
-#  define KEY_PRESS_MASK (1L << 0)
-#  define KEY_RELEASE_MASK (1L << 1)
+#  define KEY_PRESS_MASK 1L
+#  define KEY_RELEASE_MASK 2L
 
 #  define K_ESC 65307
 #  define K_W 119

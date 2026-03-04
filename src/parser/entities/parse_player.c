@@ -6,12 +6,11 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 18:24:48 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/03 19:23:40 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/04 14:26:27 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-#include "config.h"
 
 static double	get_player_angle(char c)
 {
