@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:37 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/03 19:46:20 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/05 14:24:49 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "errors.h"
 # include <sys/time.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 double	get_time_sec(void);
 

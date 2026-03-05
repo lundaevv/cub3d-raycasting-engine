@@ -6,7 +6,7 @@
 #    By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 19:41:52 by vlundaev          #+#    #+#              #
-#    Updated: 2026/03/04 20:12:43 by vlundaev         ###   ########.fr        #
+#    Updated: 2026/03/05 14:02:25 by vlundaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,11 @@ LIBFT = $(LIBFTDIR)/libft.a
 MLXDIR = mlx
 MLX = $(MLXDIR)/libmlx.a
 
+OBJDIR = obj
+
 SRC_INIT = \
 	src/init/init.c \
-	src/init/argc.c	\
+	src/init/argc.c \
 	src/init/init_graphics.c
 
 SRC_UTILS = \
@@ -63,7 +65,7 @@ SRC = main.c \
 	$(SRC_PARSER) \
 	$(SRC_RENDER)
 
-OBJS = $(SRC:.c=.o)
+OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
 all: $(NAME)
 
@@ -79,11 +81,15 @@ $(MLX):
 		$(MAKE) -C "$(MLXDIR)"; \
 	}
 
+$(OBJDIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 $(NAME): $(MLX) $(LIBFT) $(OBJS)
 	$(CC) $(OBJS) $(CFLAGS) $(LIBFLAGS) $(MLX) $(LIBFT) -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJDIR)
 	$(MAKE) -C $(LIBFTDIR) clean
 
 fclean: clean
@@ -96,3 +102,5 @@ mlxDel:
 allClean: fclean mlxDel
 
 re: fclean all
+
+.PHONY: all clean fclean re mlxDel allClean

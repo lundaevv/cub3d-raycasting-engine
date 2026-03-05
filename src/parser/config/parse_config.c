@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:01:47 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 19:53:42 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/05 12:14:21 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ static void	check_config_block(char **lines, int start,
 		else if (is_map_line(lines[i]))
 			break ;
 		else if (!register_config(seen, lines[i], game_dt, error))
-			*error = ERR_PARSE;
+		{
+			if (*error == ERR_OK)
+				*error = ERR_PARSE;
+		}
 		else
 			i++;
 	}

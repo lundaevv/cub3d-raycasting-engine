@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:31:52 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 18:12:34 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/05 13:53:18 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ const char	*msg_for_err(t_err err)
 		ERRMSG_DOOR_CONF_MISS, ERRMSG_SPR_CONF_MISS, ERRMSG_CONF_PATH,
 		ERRMSG_CONF_COLOR, ERRMSG_MAP_EMPTY, ERRMSG_MAP_CHAR, ERRMSG_MAP_DOOR,
 		ERRMSG_MAP_PLAYER, ERRMSG_MAP_GAP, ERRMSG_MAP_TRAIL, ERRMSG_MAP_OPEN,
-		ERRMSG_PARSE};
+		ERRMSG_PARSE, ERRMSG_MLX_INIT};
 
 	if (err <= 0 || err >= (t_err)(sizeof(msgs) / sizeof(msgs[0])))
 		return ("unknown error");

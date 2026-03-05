@@ -6,23 +6,25 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:31:43 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/02 13:37:49 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/05 14:26:18 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include "libft.h"
 
-static int	has_cube_extension(const char *filename)
+static bool	has_cube_extension(const char *filename)
 {
 	size_t	len;
 
 	if (!filename)
-		return (0);
+		return (false);
 	len = ft_strlen(filename);
 	if (len < 5)
-		return (0);
-	return (ft_strncmp(filename + len - 4, ".cub", 4) == 0);
+		return (false);
+	if (ft_strncmp(filename + len - 4, ".cub", 4) == 0)
+		return (true);
+	return (false);
 }
 
 void	validate_args(t_err *error, int argc, char **argv)
