@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 14:50:19 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 17:42:00 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/05 19:47:47 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	is_wall(char c)
 
 int	is_walkable_tile(char c)
 {
-	return (c == '0' || c == 'D' || c == 'A');
+	return (c == '0' || c == 'D' || c == 'A'
+	|| c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
 int	is_map_char(char c)
