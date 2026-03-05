@@ -1,5 +1,6 @@
 #include "main.h"
 #include "types.h"
+#include <math.h>
 
 int temp_init(t_game *game_dt) {
   t_mlx *mlx;
@@ -103,42 +104,38 @@ int clear_close_game(void *param) {
   return (0);
 }
 
-static int on_key_press(int key, void *param) {
-  t_game *game_dt = (t_game *)param;
-
-  // printf("Player pos: x-%f, y-%f\n", game_dt->player.pos.x,
-  //        game_dt->player.pos.y);
-  if (key == K_ESC)
-    exit(0);
-  if (key == K_W || key == K_UP)
-    game_dt->inp.w = 1;
-  if (key == K_S || key == K_DOWN)
-    game_dt->inp.s = 1;
-  if (key == K_A || key == K_LEFT)
-    game_dt->inp.a = 1;
-  if (key == K_D || key == K_RIGHT)
-    game_dt->inp.d = 1;
-  return (0);
-}
-
-static int on_key_release(int key, void *param) {
-  t_game *game_dt = (t_game *)param;
-
-  if (key == K_W || key == K_UP)
-    game_dt->inp.w = 0;
-  if (key == K_S || key == K_DOWN)
-    game_dt->inp.s = 0;
-  if (key == K_A || key == K_LEFT)
-    game_dt->inp.a = 0;
-  if (key == K_D || key == K_RIGHT)
-    game_dt->inp.d = 0;
-  return (0);
-}
-
-void draw_map(t_game game_dt) {
+void draw_column(t_game game_dt, double proj_plane, double dist, double col_x) {
   const unsigned int ceil_col = 0x00303A6D;
   const unsigned int floor_col = 0x00261F1A;
   const unsigned int wall_col = 0x002F5200;
+  int top;
+  int bottom;
+  int y;
+  double wall_h;
+
+  wall_h = ((double)TILE_SIZE * (double)WORLD_HEIGHT * proj_plane) / dist;
+  top = (game_dt.mlx.win_h - (int)wall_h) / 2;
+  bottom = (game_dt.mlx.win_h + (int)wall_h) / 2;
+  if (top < 0)
+    top = 0;
+  if (bottom >= game_dt.mlx.win_h)
+    bottom = game_dt.mlx.win_h - 1;
+  y = 0;
+  while (y < top) {
+    putp(&game_dt.mlx.frame, col_x, y, ceil_col);
+    y++;
+  }
+  while (y <= bottom) {
+    putp(&game_dt.mlx.frame, col_x, y, wall_col);
+    y++;
+  }
+  while (y < game_dt.mlx.win_h) {
+    putp(&game_dt.mlx.frame, col_x, y, floor_col);
+    y++;
+  }
+}
+
+void draw_map(t_game game_dt) {
   double fov;
   double proj_plane;
   int x;
@@ -149,51 +146,23 @@ void draw_map(t_game game_dt) {
   proj_plane = ((double)game_dt.mlx.win_w * 0.5) / tan(fov / 2);
   x = 0;
   while (x < game_dt.mlx.win_w) {
+    t_raycast_data ray_data;
     double camera_x;
     double ray_offset;
     double ray_angle;
-    double ray_len;
     double dist;
-    double wall_h;
-    int top;
-    int bottom;
-    int y;
 
     camera_x = (2.0 * ((double)x + 0.5) / (double)game_dt.mlx.win_w) - 1.0;
     ray_offset = atan(camera_x * tan(fov / 2));
-    ray_angle = game_dt.player.angle + ray_offset;
-    ray_len = raycast(game_dt, ray_angle);
-
+    ray_data = raycast(game_dt, game_dt.player.angle + ray_offset);
     /* Perpendicular distance to camera plane (fish-eye corrected). */
-    dist = ray_len * cos(ray_offset);
+    dist = ray_data.len * cos(ray_offset);
     if (dist < 1.0)
       dist = 1.0;
-
-    wall_h = ((double)TILE_SIZE * (double)WORLD_HEIGHT * proj_plane) / dist;
-    top = (game_dt.mlx.win_h - (int)wall_h) / 2;
-    bottom = (game_dt.mlx.win_h + (int)wall_h) / 2;
-
-    if (top < 0)
-      top = 0;
-    if (bottom >= game_dt.mlx.win_h)
-      bottom = game_dt.mlx.win_h - 1;
-
-    y = 0;
-    while (y < top) {
-      putp(&game_dt.mlx.frame, x, y, ceil_col);
-      y++;
-    }
-    while (y <= bottom) {
-      putp(&game_dt.mlx.frame, x, y, wall_col);
-      y++;
-    }
-    while (y < game_dt.mlx.win_h) {
-      putp(&game_dt.mlx.frame, x, y, floor_col);
-      y++;
-    }
     x++;
   }
 }
+
 int render(t_game game_dt) {
   // draw_2d_map(game_dt);
   // draw_player(game_dt);
@@ -204,36 +173,16 @@ int render(t_game game_dt) {
   return (0);
 }
 
-int update(void *param) {
-  t_game *game_dt = (t_game *)param;
-
-  double t = get_time_sec();
+int update(t_game *game_dt) {
+  const double t = get_time_sec();
   double dt = t - game_dt->inp.last_time;
-  game_dt->inp.last_time = t;
+  double step = dt * 40; // 200 pixels per second
 
+  game_dt->inp.last_time = t;
   if (dt > 0.05)
     dt = 0.05;
-
-  double step = dt * 40; // 200 pixels per second
-  // printf("Player pos: x-%f, y-%f, angle-%f, time-%f, dt-%f, step-%f\n",
-  //        game_dt->player.pos.x, game_dt->player.pos.y,
-  //        game_dt->player.angle, t, dt, step);
-
-  if (game_dt->inp.w) {
-    game_dt->player.pos.x += cos(game_dt->player.angle) * step;
-    game_dt->player.pos.y += sin(game_dt->player.angle) * step;
-  }
-  if (game_dt->inp.s) {
-    game_dt->player.pos.x -= cos(game_dt->player.angle) * step;
-    game_dt->player.pos.y -= sin(game_dt->player.angle) * step;
-  }
-  if (game_dt->inp.a) {
-    game_dt->player.angle -= step * 0.1; // Rotate left
-  }
-  if (game_dt->inp.d) {
-    game_dt->player.angle += step * 0.1; // Rotate right
-  }
-
+  move_player(game_dt, step);
+  rotate_player(game_dt, step * 0.1);
   render(*game_dt);
   return (0);
 }

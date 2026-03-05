@@ -8,6 +8,16 @@ no function prototypes here
 
 #include <stdint.h>
 
+// NOTE: Additional enum and struct for storing result of calculations from
+// raycast.
+typedef enum e_cell_side { NORTH_S, SOUTH_S, WEST_S, EAST_S } t_cell_side;
+
+typedef struct s_raycast_data {
+  double len;
+  t_cell_side side;
+  // double tex_x;
+} t_raycast_data;
+
 typedef enum e_cell { c_unknown, c_empty, c_wall, c_door } t_cell;
 
 // NOTE: Struct for storing curently pressed button

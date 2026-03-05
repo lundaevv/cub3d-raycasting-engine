@@ -1,4 +1,5 @@
 #include "render.h"
+#include "types.h"
 
 static int is_colided(t_game game_dt, t_vec coord) {
   if (coord.x < 0 || coord.y < 0)
@@ -60,7 +61,18 @@ static double cast_hor(t_game game_dt, const double calc_sin,
   return (fabs((coord.y - game_dt.player.pos.y) / calc_sin));
 }
 
-double raycast(t_game game_dt, double angle) {
+t_cell_side which_side(char is_hor, t_vec step) {
+  if (is_hor) {
+    if (step.y < 0)
+      return (NORTH_S);
+    return (SOUTH_S);
+  }
+  if (step.x < 0)
+    return (WEST_S);
+  return (EAST_S);
+}
+
+t_raycast_data raycast(t_game game_dt, double angle) {
   const double calc_sin = sin(angle);
   const double calc_cos = cos(angle);
   t_vec len;
@@ -71,10 +83,9 @@ double raycast(t_game game_dt, double angle) {
     step.y = -1;
   if (calc_cos < 0)
     step.x = -1;
-
-  len.y = cast_hor(game_dt, calc_sin, calc_cos, step);
-  len.x = cast_ver(game_dt, calc_sin, calc_cos, step);
+  len.y = cast_ver(game_dt, calc_sin, calc_cos, step);
+  len.x = cast_hor(game_dt, calc_sin, calc_cos, step);
   if (len.y < len.x)
-    return len.y;
-  return len.x;
+    return (t_raycast_data){.len = len.y, .side = which_side(0, step)};
+  return (t_raycast_data){.len = len.x, .side = which_side(1, step)};
 }

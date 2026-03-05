@@ -20,6 +20,6 @@ unsigned int getp(t_img *im, int x, int y);
 void blit_copy(t_img *dst, t_img *src, int dx, int dy);
 void blit_colorkey(t_img *dst, t_img *src, int dx, int dy);
 
-double raycast(t_game game_dt, double angle);
+t_raycast_data raycast(t_game game_dt, double angle);
 
 #endif

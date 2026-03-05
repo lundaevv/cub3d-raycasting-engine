@@ -13,9 +13,13 @@ MLX      = $(MLXDIR)/libmlx.a
 
 SRC_UTILS = src/utils/get_time_sec.c \
 						src/utils/get_cell_type.c
+SRC_INTERACTION = src/interaction/on_key_actions.c \
+									src/interaction/move_player.c \
+									src/interaction/rotate_player.c
 SRC_RENDER = src/render/raycast.c \
 						 src/render/render_utils.c
 SRC      = $(SRC_UTILS) \
+					 $(SRC_INTERACTION) \
 					 $(SRC_RENDER)
 
 OBJS     = $(SRC:.c=.o)
@@ -31,7 +35,9 @@ $(MLX):
 			rm -rf "$(MLXDIR)"; \
 			git clone https://github.com/42paris/minilibx-linux.git "$(MLXDIR)"; \
 			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/Makefile.gen; \
+			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/test/Makefile.gen; \
 			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/Makefile.mk; \
+			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/test/Makefile.mk; \
 		fi; \
 		$(MAKE) -C "$(MLXDIR)"; \
 	}

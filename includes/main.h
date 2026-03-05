@@ -24,6 +24,7 @@ enum texture id
 #include "../libft/includes/libft.h"
 #include "config.h"
 #include "errors.h"
+#include "interaction.h"
 #include "parser.h"
 #include "render.h"
 #include "types.h"
