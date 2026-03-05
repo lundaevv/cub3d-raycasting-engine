@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 19:49:15 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 13:50:43 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/05 17:54:40 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ static int	on_key(int keycode, void *param)
 
 int	render(t_game *game_dt, t_err *error)
 {
-	if (!game_dt || !error || *error != ERR_OK)
-		return (0);
+	(void)error;
 	mlx_put_image_to_window(game_dt->mlx.context, game_dt->mlx.win,
 		game_dt->mlx.frame.img, 0, 0);
 	mlx_hook(game_dt->mlx.win, KEY_PRESS, KEY_PRESS_MASK, on_key, game_dt);

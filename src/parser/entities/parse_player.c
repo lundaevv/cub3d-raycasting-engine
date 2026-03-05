@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 18:24:48 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 14:26:27 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/05 14:36:55 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ static double	get_player_angle(char c)
 	return (0.0);
 }
 
+// Sets player position and angle based on the map character, and replaces the
+// map cell with '0' (empty) after extracting the player.
+// NOTE: This modifies the map grid, but it's simpler than tracking the player
+// separately during rendering.
+// 0.5 is added to center the player in the cell (the position is a double).
 static void	set_player(t_game *game_dt, int row, int col, char c)
 {
 	game_dt->player.pos.x = col + 0.5;

@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:53 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 13:52:43 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/05 18:19:08 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@
 # define ERRMSG_MAP_OPEN "map not closed"
 # define ERRMSG_PARSE "parse error"
 # define ERRMSG_MLX_INIT "mlx init failed :("
+# define ERRMSG_NULL_PTR "null pointer passed to function"
+# define ERRMSG_FILE_BLANK "no usable lines read from file"
+# define ERRMSG_FILE_EMPTY "file is empty"
+# define ERRMSG_CONF_ID "invalid config identifier"
 
 /*
 	ERR_OK = 0,
@@ -59,6 +63,10 @@
 	ERR_MAP_OPEN,		map not closed/surrounded by walls
 	ERR_PARSE			generic parse error (e.g. unexpected line format)
 	ERR_MLX_INIT,		mlx init failed (e.g. mlx_init returned NULL)
+	ERR_NULL_PTR		null pointer passed to function (e.g. game_dt or error)
+	ERR_FILE_BLANK		no usable lines read from file (e.g. only empty lines)
+	ERR	FILE_EMPTY		file is empty (0 lines read)
+	ERR_CONF_ID			invalid config identifier (e.g. line starts with unknown ID)
 */
 typedef enum e_err
 {
@@ -82,7 +90,11 @@ typedef enum e_err
 	ERR_MAP_TRAIL,
 	ERR_MAP_OPEN,
 	ERR_PARSE,
-	ERR_MLX_INIT
+	ERR_MLX_INIT,
+	ERR_NULL_PTR,
+	ERR_FILE_BLANK,
+	ERR_FILE_EMPTY,
+	ERR_CONF_ID
 }	t_err;
 
 int				print_msg(const char *str, const char *detail, int exit_no);

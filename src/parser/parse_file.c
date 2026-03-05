@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:02:02 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 14:26:18 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/05 17:58:45 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,6 @@ char	**parse_file(t_game *game_dt, t_err *error)
 	int		line_count;
 	char	**lines;
 
-	if (!game_dt || !error)
-		return (NULL);
 	fd = open(game_dt->map_path, O_RDONLY);
 	if (fd < 0)
 	{
@@ -94,9 +92,9 @@ char	**parse_file(t_game *game_dt, t_err *error)
 	}
 	line_count = count_file_lines(fd);
 	close(fd);
-	if (line_count == 0)
+	if (!line_count)
 	{
-		*error = ERR_MAP_EMPTY;
+		*error = ERR_FILE_EMPTY;
 		return (NULL);
 	}
 	lines = alloc_lines(line_count, error);
