@@ -1,0 +1,16 @@
+NO textures/walls/greystone.xpm
+SO textures/walls/redbrick.xpm
+WE textures/walls/purplestone.xpm
+EA textures/walls/wood.xpm
+DC textures/walls/grass.xpm
+DO textures/walls/wood.xpm
+SP textures/walls/purplestone.xpm
+F 70,70,70
+C 20,30,40
+
+111111111
+100000001
+111D11111
+1A0000N01
+100000001
+111111111

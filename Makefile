@@ -6,7 +6,7 @@
 #    By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 19:41:52 by vlundaev          #+#    #+#              #
-#    Updated: 2026/03/06 12:38:40 by vlundaev         ###   ########.fr        #
+#    Updated: 2026/03/06 15:42:48 by vlundaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,10 @@ SRC = main.c \
 
 OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 
+VALID_MAPS = $(wildcard maps/valid/*.cub)
+INVALID_MAPS = $(wildcard maps/invalid/*.cub)
+TEST_TIMEOUT = 1
+
 all: $(NAME)
 
 $(LIBFT):
@@ -104,4 +108,93 @@ allClean: fclean mlxDel
 
 re: fclean all
 
-.PHONY: all clean fclean re mlxDel allClean
+test: test_parser
+
+test_parser: $(NAME)
+	@if [ -z "$(VALID_MAPS)$(INVALID_MAPS)" ]; then \
+		echo "No maps found in maps/valid or maps/invalid"; \
+		exit 1; \
+	fi
+	@if ! command -v timeout >/dev/null 2>&1; then \
+		echo "timeout command not found; install coreutils or use a test runner with a different timeout mechanism"; \
+		exit 1; \
+	fi
+	@echo "== Valid maps (expect parse/init to work; render loop stops by timeout) =="; \
+	fail=0; \
+	for map in $(VALID_MAPS); do \
+		tmp=$$(mktemp); \
+		timeout $(TEST_TIMEOUT)s ./$(NAME) "$$map" > "$$tmp" 2>&1 || rc=$$?; \
+		rc=$${rc:-0}; \
+		if [ $$rc -eq 0 ] || [ $$rc -eq 124 ]; then \
+			echo "  [PASS] $$map"; \
+		else \
+			echo "  [FAIL] $$map (exit $$rc)"; \
+			cat "$$tmp"; \
+			fail=1; \
+		fi; \
+		rc=; \
+		rm -f "$$tmp"; \
+	done; \
+	if [ $$fail -ne 0 ]; then \
+		exit 1; \
+	fi; \
+	echo "== Invalid maps (expect non-zero) =="; \
+	for map in $(INVALID_MAPS); do \
+		tmp=$$(mktemp); \
+		./$(NAME) "$$map" > "$$tmp" 2>&1 || rc=$$?; \
+		rc=$${rc:-0}; \
+		if [ $$rc -eq 0 ]; then \
+			echo "  [FAIL] $$map (exit 0)"; \
+			cat "$$tmp"; \
+			fail=1; \
+		else \
+			echo "  [PASS] $$map"; \
+		fi; \
+		rc=; \
+		rm -f "$$tmp"; \
+	done; \
+	echo "== CLI tests (expect non-zero) =="; \
+	tmp=$$(mktemp); \
+	./$(NAME) > "$$tmp" 2>&1; \
+	rc=$$?; \
+	if [ $$rc -eq 0 ]; then \
+		echo "  [FAIL] no-argument mode (exit 0)"; \
+		cat "$$tmp"; \
+		fail=1; \
+	else \
+		echo "  [PASS] no-argument mode"; \
+	fi; \
+	./$(NAME) maps/valid/valid_basic.cub $(firstword $(INVALID_MAPS)) > "$$tmp" 2>&1; \
+	rc=$$?; \
+	if [ $$rc -eq 0 ]; then \
+		echo "  [FAIL] too-many-arguments mode (exit 0)"; \
+		cat "$$tmp"; \
+		fail=1; \
+	else \
+		echo "  [PASS] too-many-arguments mode"; \
+	fi; \
+	./$(NAME) maps/valid/valid_basic.txt > "$$tmp" 2>&1; \
+	rc=$$?; \
+	if [ $$rc -eq 0 ]; then \
+		echo "  [FAIL] bad extension mode (exit 0)"; \
+		cat "$$tmp"; \
+		fail=1; \
+	else \
+		echo "  [PASS] bad extension mode"; \
+	fi; \
+	./$(NAME) maps/this_file_does_not_exist.cub > "$$tmp" 2>&1; \
+	rc=$$?; \
+	if [ $$rc -eq 0 ]; then \
+		echo "  [FAIL] missing-file mode (exit 0)"; \
+		cat "$$tmp"; \
+		fail=1; \
+	else \
+		echo "  [PASS] missing-file mode"; \
+	fi; \
+	rm -f "$$tmp"; \
+	if [ $$fail -ne 0 ]; then \
+		exit 1; \
+	fi; \
+	echo "== parser+init tests passed ==";
+
+.PHONY: all clean fclean re mlxDel allClean test test_parser
