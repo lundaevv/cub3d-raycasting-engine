@@ -6,7 +6,7 @@
 #    By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 19:41:52 by vlundaev          #+#    #+#              #
-#    Updated: 2026/03/05 14:02:25 by vlundaev         ###   ########.fr        #
+#    Updated: 2026/03/06 12:38:40 by vlundaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,11 +45,12 @@ SRC_PARSER = \
 	src/parser/config/parse_config_store.c \
 	src/parser/config/parse_config_color.c \
 	src/parser/map/parse_map.c \
+	src/parser/map/parse_map_find_block.c \
 	src/parser/map/parse_map_utils.c \
 	src/parser/map/parse_map_validate.c \
 	src/parser/map/parse_map_normalize.c \
 	src/parser/map/parse_map_closed.c \
-	src/parser/map/parse_map_tail.c \
+	src/parser/map/parse_map_boundary.c \
 	src/parser/entities/parse_player.c \
 	src/parser/entities/parse_door.c \
 	src/parser/entities/parse_tile.c \

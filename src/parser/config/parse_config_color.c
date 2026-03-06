@@ -6,13 +6,13 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 19:31:04 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 20:08:35 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:21:57 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static int	is_valid_rgb_value(int n)
+static bool	is_valid_rgb_value(int n)
 {
 	return (n >= 0 && n <= 255);
 }
@@ -27,7 +27,7 @@ static int	count_parts(char **parts)
 	return (count);
 }
 
-static int	is_strict_number(char *str)
+static bool	is_strict_number(char *str)
 {
 	int	i;
 
@@ -35,20 +35,20 @@ static int	is_strict_number(char *str)
 	while (str[i] && ft_isspace(str[i]))
 		i++;
 	if (!str[i])
-		return (0);
+		return (false);
 	while (str[i] && !ft_isspace(str[i]))
 	{
 		if (!ft_isdigit(str[i]))
-			return (0);
+			return (false);
 		i++;
 	}
 	while (str[i])
 	{
 		if (!ft_isspace(str[i]))
-			return (0);
+			return (false);
 		i++;
 	}
-	return (1);
+	return (true);
 }
 
 static int	parse_rgb_values(char **parts, int *r, int *g, int *b)

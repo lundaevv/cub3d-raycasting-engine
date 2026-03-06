@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:41 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 14:18:56 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 12:41:02 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_map
 	int				cols;
 	int				rows;
 }	t_map;
-
 
 typedef struct s_player
 {

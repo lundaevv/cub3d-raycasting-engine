@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:01:47 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 18:34:48 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 12:30:08 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	check_config_block(char **lines, int start,
 		*error = ERR_CONF_MISS;
 }
 
-void	parse_config(char **lines, t_game *game_dt, t_err *error)
+void	parse_graphics_config_block(char **lines, t_game *game_dt, t_err *error)
 {
 	int	start;
 

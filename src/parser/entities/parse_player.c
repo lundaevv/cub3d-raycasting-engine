@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 18:24:48 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 19:39:39 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 12:48:26 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,7 @@ static double	get_player_angle(char c)
 	return (0.0);
 }
 
-// Sets player position and angle based on the map character, and replaces the
-// map cell with '0' (empty) after extracting the player.
-// TO DECIDE: change to 0 or not
-// NOTE: This modifies the map grid, but it's simpler than tracking the player
-// separately during rendering.
-static void	set_player(t_game *game_dt, int row, int col, char c)
+static void	store_player_from_cell(t_game *game_dt, int row, int col, char c)
 {
 	game_dt->player.pos.x = col;
 	game_dt->player.pos.y = row;
@@ -36,7 +31,7 @@ static void	set_player(t_game *game_dt, int row, int col, char c)
 	game_dt->map.grid[row][col] = '0';
 }
 
-int	extract_player(t_game *game_dt)
+int	extract_player_entity(t_game *game_dt)
 {
 	int	i;
 	int	j;
@@ -49,7 +44,7 @@ int	extract_player(t_game *game_dt)
 		{
 			if (is_player_char(game_dt->map.grid[i][j]))
 			{
-				set_player(game_dt, i, j, game_dt->map.grid[i][j]);
+				store_player_from_cell(game_dt, i, j, game_dt->map.grid[i][j]);
 				return (1);
 			}
 			j++;

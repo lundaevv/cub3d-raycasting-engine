@@ -6,32 +6,13 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:02:14 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 19:47:24 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 12:47:49 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static int	find_map_start(char **lines)
-{
-	int	i;
-
-	i = 0;
-	while (lines[i])
-	{
-		if (is_empty_line(lines[i]))
-			i++;
-		else if (get_config_id(lines[i]) >= 0)
-			i++;
-		else if (is_map_line(lines[i]))
-			return (i);
-		else
-			return (-2);
-	}
-	return (-1);
-}
-
-static void	free_map_copy(char **grid, int count)
+static void	free_partial_map_grid(char **grid, int count)
 {
 	int	i;
 
@@ -44,7 +25,7 @@ static void	free_map_copy(char **grid, int count)
 	free(grid);
 }
 
-static int	copy_map_lines(char **lines, int start, int count, t_game *game_dt)
+static int	build_map_grid(char **lines, int start, int count, t_game *game_dt)
 {
 	int	i;
 
@@ -57,7 +38,7 @@ static int	copy_map_lines(char **lines, int start, int count, t_game *game_dt)
 		game_dt->map.grid[i] = ft_strtrim(lines[start + i], "\n");
 		if (!game_dt->map.grid[i])
 		{
-			free_map_copy(game_dt->map.grid, i);
+			free_partial_map_grid(game_dt->map.grid, i);
 			game_dt->map.grid = NULL;
 			return (0);
 		}
@@ -68,40 +49,27 @@ static int	copy_map_lines(char **lines, int start, int count, t_game *game_dt)
 	return (1);
 }
 
-static int	validate_map_start(int start, t_err *error)
-{
-	if (start == -1)
-	{
-		*error = ERR_MAP_EMPTY;
-		return (0);
-	}
-	if (start == -2)
-	{
-		*error = ERR_PARSE;
-		return (0);
-	}
-	return (1);
-}
-
-void	parse_map(char **lines, t_game *game_dt, t_err *error)
+void	parse_map_block(char **lines, t_game *game_dt, t_err *error)
 {
 	int	start;
 	int	count;
 
-	start = find_map_start(lines);
-	if (!validate_map_start(start, error))
+	start = find_map_start_line(lines);
+	if (!validate_map_block_start(start, error))
 		return ;
-	count = count_map_lines(lines, start, error);
+	count = count_map_block_rows(lines, start);
+	if (lines[start + count])
+		validate_map_terminator(lines, start + count, error);
 	if (*error != ERR_OK)
 		return ;
-	if (!copy_map_lines(lines, start, count, game_dt))
+	if (!build_map_grid(lines, start, count, game_dt))
 	{
 		*error = ERR_MEM;
 		return ;
 	}
 	if (!validate_loaded_map(game_dt, error))
 		return ;
-	if (!extract_player(game_dt))
+	if (!extract_player_entity(game_dt))
 	{
 		*error = ERR_MAP_PLAYER;
 		return ;

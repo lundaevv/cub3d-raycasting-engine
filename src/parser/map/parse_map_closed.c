@@ -6,30 +6,30 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 19:11:36 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 14:51:33 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:19:36 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static int	touches_void(t_map *map, int row, int col)
+static bool	touches_void(t_map *map, int row, int col)
 {
 	if (row == 0 || col == 0)
-		return (1);
+		return (true);
 	if (row == map->rows - 1 || col == map->cols - 1)
-		return (1);
+		return (true);
 	if (map->grid[row - 1][col] == ' ')
-		return (1);
+		return (true);
 	if (map->grid[row + 1][col] == ' ')
-		return (1);
+		return (true);
 	if (map->grid[row][col - 1] == ' ')
-		return (1);
+		return (true);
 	if (map->grid[row][col + 1] == ' ')
-		return (1);
-	return (0);
+		return (true);
+	return (false);
 }
 
-int	is_map_closed(t_map *map)
+bool	is_map_closed(t_map *map)
 {
 	int	i;
 	int	j;
@@ -41,10 +41,10 @@ int	is_map_closed(t_map *map)
 		while (j < map->cols)
 		{
 			if (is_walkable_tile(map->grid[i][j]) && touches_void(map, i, j))
-				return (0);
+				return (false);
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (true);
 }

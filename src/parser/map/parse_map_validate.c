@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 18:12:34 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 19:50:13 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 12:46:59 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ static int	validate_map_content(t_game *game_dt, t_err *error)
 		*error = ERR_MAP_PLAYER;
 		return (0);
 	}
-/*	if (!extract_player(game_dt))
-	{
-		*error = ERR_MAP_PLAYER;
-		return (0);
-	}*/
 	return (1);
 }
 

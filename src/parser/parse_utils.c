@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:02:30 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 14:26:31 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:17:43 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ void	free_lines(char **lines)
 	free(lines);
 }
 
-int	is_empty_line(char *line)
+bool	is_empty_line(char *line)
 {
 	int	i;
 
 	if (!line)
-		return (1);
+		return (true);
 	i = 0;
 	while (line[i])
 	{
 		if (!ft_isspace(line[i]))
-			return (0);
+			return (false);
 		i++;
 	}
-	return (1);
+	return (true);
 }
 
 int	skip_empty_lines(char **lines)

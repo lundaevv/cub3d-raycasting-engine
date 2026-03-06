@@ -6,21 +6,21 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 14:25:59 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 15:18:25 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:20:39 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static int	is_valid_door(t_map *map, int row, int col)
+static bool	is_valid_door(t_map *map, int row, int col)
 {
 	int	horizontal;
 	int	vertical;
 
 	if (row == 0 || col == 0)
-		return (0);
+		return (false);
 	if (row == map->rows - 1 || col == map->cols - 1)
-		return (0);
+		return (false);
 	horizontal = is_wall(map->grid[row][col - 1])
 		&& is_wall(map->grid[row][col + 1])
 		&& is_walkable_tile(map->grid[row - 1][col])
@@ -30,8 +30,8 @@ static int	is_valid_door(t_map *map, int row, int col)
 		&& is_walkable_tile(map->grid[row][col - 1])
 		&& is_walkable_tile(map->grid[row][col + 1]);
 	if (horizontal || vertical)
-		return (1);
-	return (0);
+		return (true);
+	return (false);
 }
 
 int	count_doors(t_map *map)

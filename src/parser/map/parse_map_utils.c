@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:04:14 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 19:24:19 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:16:50 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,21 @@ int	count_players(char **grid)
 	return (count);
 }
 
-int	is_map_line(char *line)
+bool	is_map_line(char *line)
 {
 	int	i;
 	int	has_tile;
 
 	if (!line)
-		return (0);
+		return (false);
 	i = 0;
 	has_tile = 0;
 	while (line[i] && line[i] != '\n')
 	{
 		if (!is_map_char(line[i]))
-			return (0);
+			return (false);
 		if (line[i] != ' ')
-			has_tile = 1;
+			has_tile = true;
 		i++;
 	}
 	return (has_tile);

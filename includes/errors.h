@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:53 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 18:19:08 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 12:41:26 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@
 	ERR_NULL_PTR		null pointer passed to function (e.g. game_dt or error)
 	ERR_FILE_BLANK		no usable lines read from file (e.g. only empty lines)
 	ERR	FILE_EMPTY		file is empty (0 lines read)
-	ERR_CONF_ID			invalid config identifier (e.g. line starts with unknown ID)
+	ERR_CONF_ID			invalid config identifier (line starts with unknown ID)
 */
 typedef enum e_err
 {

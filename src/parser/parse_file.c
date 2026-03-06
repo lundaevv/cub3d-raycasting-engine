@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:02:02 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 17:58:45 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 12:29:46 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	read_file_lines(char *path, char **lines, int count, t_err *error)
 	return (1);
 }
 
-char	**parse_file(t_game *game_dt, t_err *error)
+char	**read_map_file_lines(t_game *game_dt, t_err *error)
 {
 	int		fd;
 	int		line_count;

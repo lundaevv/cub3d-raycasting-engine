@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 19:48:34 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 17:24:03 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/06 12:40:09 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static int	load_all_textures(t_game *game)
 void	init_graphics(t_game *game_dt, t_err *error)
 {
 	if (!init_mlx_core(game_dt) || !init_frame(game_dt)
-			|| !load_all_textures(game_dt))
+		|| !load_all_textures(game_dt))
 	{
 		*error = ERR_MLX_INIT;
 		return ;
