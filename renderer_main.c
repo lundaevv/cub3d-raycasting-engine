@@ -2,6 +2,37 @@
 #include "types.h"
 #include <math.h>
 
+void init_texture(t_game *game_dt) {
+  t_cell_side i = EAST_S;
+  game_dt->graphics.textures[i].img = mlx_xpm_file_to_image(
+      game_dt->mlx.context, "textures/wall_E.xpm",
+      &game_dt->graphics.textures[i].w, &game_dt->graphics.textures[i].h);
+  game_dt->graphics.textures[i].a = mlx_get_data_addr(
+      game_dt->graphics.textures[i].img, &game_dt->graphics.textures[i].bpp,
+      &game_dt->graphics.textures[i].ll, &game_dt->graphics.textures[i].e);
+  i = SOUTH_S;
+  game_dt->graphics.textures[i].img = mlx_xpm_file_to_image(
+      game_dt->mlx.context, "textures/wall_S.xpm",
+      &game_dt->graphics.textures[i].w, &game_dt->graphics.textures[i].h);
+  game_dt->graphics.textures[i].a = mlx_get_data_addr(
+      game_dt->graphics.textures[i].img, &game_dt->graphics.textures[i].bpp,
+      &game_dt->graphics.textures[i].ll, &game_dt->graphics.textures[i].e);
+  i = WEST_S;
+  game_dt->graphics.textures[i].img = mlx_xpm_file_to_image(
+      game_dt->mlx.context, "textures/wall_W.xpm",
+      &game_dt->graphics.textures[i].w, &game_dt->graphics.textures[i].h);
+  game_dt->graphics.textures[i].a = mlx_get_data_addr(
+      game_dt->graphics.textures[i].img, &game_dt->graphics.textures[i].bpp,
+      &game_dt->graphics.textures[i].ll, &game_dt->graphics.textures[i].e);
+  i = NORTH_S;
+  game_dt->graphics.textures[i].img = mlx_xpm_file_to_image(
+      game_dt->mlx.context, "textures/wall_N.xpm",
+      &game_dt->graphics.textures[i].w, &game_dt->graphics.textures[i].h);
+  game_dt->graphics.textures[i].a = mlx_get_data_addr(
+      game_dt->graphics.textures[i].img, &game_dt->graphics.textures[i].bpp,
+      &game_dt->graphics.textures[i].ll, &game_dt->graphics.textures[i].e);
+}
+
 int temp_init(t_game *game_dt) {
   t_mlx *mlx;
 
@@ -20,10 +51,8 @@ int temp_init(t_game *game_dt) {
   //
   mlx = &game_dt->mlx;
   mlx->context = mlx_init();
-  // mlx->win_w = game_dt->map.cols * TILE_SIZE;
-  // mlx->win_h = (game_dt->map.rows + 1) * TILE_SIZE;
-  mlx->win_w = 2400;
-  mlx->win_h = 600;
+  mlx->win_w = 1920;
+  mlx->win_h = 1080;
   mlx->win = mlx_new_window(mlx->context, mlx->win_w, mlx->win_h, "So Long");
   mlx->frame =
       (t_img){.img = mlx_new_image(mlx->context, mlx->win_w, mlx->win_h),
@@ -38,9 +67,12 @@ int temp_init(t_game *game_dt) {
 
   game_dt->player.pos = (t_vec){(3 - 1) * TILE_SIZE + (double)TILE_SIZE / 2,
                                 (3 - 1) * TILE_SIZE + (double)TILE_SIZE / 2};
-  // game_dt->player.angle = 3 * M_PI_2; //Player looking up "N"
-  game_dt->player.angle = 0; // Player looking left "W"
+  game_dt->player.angle = 0; // Player looking right "E"
   game_dt->inp.last_time = get_time_sec();
+
+  init_texture(game_dt);
+  game_dt->graphics.ceil_col = 0x00303A6D;
+  game_dt->graphics.floor_col = 0x00261F1A;
   return 1;
 }
 
@@ -98,105 +130,9 @@ int draw_ray(t_game game_dt, double ray_angle, const double ray_len) {
   return (0);
 }
 
-int clear_close_game(void *param) {
-  t_game *game_dt = (t_game *)param;
-  exit(0);
-  return (0);
-}
-
-void draw_column(t_game game_dt, double proj_plane, double dist, double col_x) {
-  const unsigned int ceil_col = 0x00303A6D;
-  const unsigned int floor_col = 0x00261F1A;
-  const unsigned int wall_col = 0x002F5200;
-  int top;
-  int bottom;
-  int y;
-  double wall_h;
-
-  wall_h = ((double)TILE_SIZE * (double)WORLD_HEIGHT * proj_plane) / dist;
-  top = (game_dt.mlx.win_h - (int)wall_h) / 2;
-  bottom = (game_dt.mlx.win_h + (int)wall_h) / 2;
-  if (top < 0)
-    top = 0;
-  if (bottom >= game_dt.mlx.win_h)
-    bottom = game_dt.mlx.win_h - 1;
-  y = 0;
-  while (y < top) {
-    putp(&game_dt.mlx.frame, col_x, y, ceil_col);
-    y++;
-  }
-  while (y <= bottom) {
-    putp(&game_dt.mlx.frame, col_x, y, wall_col);
-    y++;
-  }
-  while (y < game_dt.mlx.win_h) {
-    putp(&game_dt.mlx.frame, col_x, y, floor_col);
-    y++;
-  }
-}
-
-void draw_map(t_game game_dt) {
-  double fov;
-  double proj_plane;
-  int x;
-
-  fov = FOV;
-  if (fov <= 1e-6 || fov >= M_PI - 1e-6)
-    fov = M_PI / 2.0;
-  proj_plane = ((double)game_dt.mlx.win_w * 0.5) / tan(fov / 2);
-  x = 0;
-  while (x < game_dt.mlx.win_w) {
-    t_raycast_data ray_data;
-    double camera_x;
-    double ray_offset;
-    double ray_angle;
-    double dist;
-
-    camera_x = (2.0 * ((double)x + 0.5) / (double)game_dt.mlx.win_w) - 1.0;
-    ray_offset = atan(camera_x * tan(fov / 2));
-    ray_data = raycast(game_dt, game_dt.player.angle + ray_offset);
-    /* Perpendicular distance to camera plane (fish-eye corrected). */
-    dist = ray_data.len * cos(ray_offset);
-    if (dist < 1.0)
-      dist = 1.0;
-    x++;
-  }
-}
-
-int render(t_game game_dt) {
-  // draw_2d_map(game_dt);
-  // draw_player(game_dt);
-  // draw_ray(game_dt, game_dt.player.angle, 20);
-  draw_map(game_dt);
-  mlx_put_image_to_window(game_dt.mlx.context, game_dt.mlx.win,
-                          game_dt.mlx.frame.img, 0, 0);
-  return (0);
-}
-
-int update(t_game *game_dt) {
-  const double t = get_time_sec();
-  double dt = t - game_dt->inp.last_time;
-  double step = dt * 40; // 200 pixels per second
-
-  game_dt->inp.last_time = t;
-  if (dt > 0.05)
-    dt = 0.05;
-  move_player(game_dt, step);
-  rotate_player(game_dt, step * 0.1);
-  render(*game_dt);
-  return (0);
-}
-
 int main(int argc, char **argv) {
   t_game game_dt;
 
   temp_init(&game_dt);
-
-  mlx_hook(game_dt.mlx.win, KEY_PRESS, KEY_PRESS_MASK, on_key_press, &game_dt);
-  mlx_hook(game_dt.mlx.win, KEY_RELEASE, KEY_RELEASE_MASK, on_key_release,
-           &game_dt);
-  mlx_hook(game_dt.mlx.win, DESTROY_NOTIFY, 0, clear_close_game, &game_dt);
-
-  mlx_loop_hook(game_dt.mlx.context, update, &game_dt);
-  mlx_loop(game_dt.mlx.context);
+  render(game_dt);
 }

@@ -15,7 +15,7 @@ typedef enum e_cell_side { NORTH_S, SOUTH_S, WEST_S, EAST_S } t_cell_side;
 typedef struct s_raycast_data {
   double len;
   t_cell_side side;
-  // double tex_x;
+  double tex_x;
 } t_raycast_data;
 
 typedef enum e_cell { c_unknown, c_empty, c_wall, c_door } t_cell;
@@ -69,7 +69,10 @@ typedef struct s_config {
 typedef struct s_graphics {
   // array of sprites
   // array of textures
+  t_img textures[4];
   // floor and ceiling colors
+  unsigned int ceil_col;
+  unsigned int floor_col;
 } t_graphics;
 
 typedef struct s_mlx {

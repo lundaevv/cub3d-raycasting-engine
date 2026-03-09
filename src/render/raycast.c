@@ -61,7 +61,7 @@ static double cast_hor(t_game game_dt, const double calc_sin,
   return (fabs((coord.y - game_dt.player.pos.y) / calc_sin));
 }
 
-t_cell_side which_side(char is_hor, t_vec step) {
+static t_cell_side which_side(char is_hor, t_vec step) {
   if (is_hor) {
     if (step.y < 0)
       return (NORTH_S);
@@ -77,6 +77,7 @@ t_raycast_data raycast(t_game game_dt, double angle) {
   const double calc_cos = cos(angle);
   t_vec len;
   t_vec step;
+  t_raycast_data ray_data;
 
   step = (t_vec){1, 1};
   if (calc_sin < 0)
@@ -86,6 +87,9 @@ t_raycast_data raycast(t_game game_dt, double angle) {
   len.y = cast_ver(game_dt, calc_sin, calc_cos, step);
   len.x = cast_hor(game_dt, calc_sin, calc_cos, step);
   if (len.y < len.x)
-    return (t_raycast_data){.len = len.y, .side = which_side(0, step)};
-  return (t_raycast_data){.len = len.x, .side = which_side(1, step)};
+    ray_data = (t_raycast_data){len.y, which_side(0, step), 0};
+  else
+    ray_data = (t_raycast_data){.len = len.x, .side = which_side(1, step), 0};
+  ray_data.tex_x = get_texture_x(game_dt, ray_data, calc_sin, calc_cos);
+  return (ray_data);
 }

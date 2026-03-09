@@ -1,15 +1,17 @@
 #ifndef RENDER_H
 #define RENDER_H
 
+#include "../mlx/mlx.h"
 #include "config.h"
+#include "interaction.h"
 #include "types.h"
 #include "utils.h"
 #include <math.h>
 
-int render(t_game game_dt);
+void render(t_game game_dt);
 int pre_render(t_game game_dt);
 int draw_minimap(int **map, t_vec player_pos);
-int draw_map_3d(int **map, t_vec player_pos, t_img *textures_arr);
+void draw_map(t_game game_dt);
 
 int show_menu_ui();
 int show_ingame_ui();
@@ -21,5 +23,7 @@ void blit_copy(t_img *dst, t_img *src, int dx, int dy);
 void blit_colorkey(t_img *dst, t_img *src, int dx, int dy);
 
 t_raycast_data raycast(t_game game_dt, double angle);
+double get_texture_x(t_game game_dt, t_raycast_data ray_data,
+                     const double sin_val, const double cos_val);
 
 #endif
