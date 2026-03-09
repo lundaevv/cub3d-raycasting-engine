@@ -1,3 +1,4 @@
+#include "types.h"
 #include "utils.h"
 
 t_cell get_cell_type(t_game game_dt, int x, int y) {
@@ -5,9 +6,12 @@ t_cell get_cell_type(t_game game_dt, int x, int y) {
   const int cur_row = y / TILE_SIZE;
   const int cur_col = x / TILE_SIZE;
 
-  // printf("var = %d\n", cur_row);
+  if (x < 0 || y < 0)
+    return (c_unknown);
   if (cur_row > map->rows || cur_col > map->cols)
     return c_unknown;
+  if (map->grid == NULL || map->grid[cur_row] == NULL)
+    return c_empty;
   if (map->grid[cur_row][cur_col] == '0')
     return c_empty;
   if (map->grid[cur_row][cur_col] == '1')

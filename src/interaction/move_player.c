@@ -1,5 +1,6 @@
 #include "interaction.h"
 #include "types.h"
+// #include <stdio.h>
 
 static int is_collided(t_game game_dt, t_vec coords) {
   if (coords.x <= 0)
@@ -33,6 +34,7 @@ void move_player(t_game *game_dt, double step) {
     return;
   if (is_collided(*game_dt, new_pos))
     return;
+  // printf("Player pos x-%.4f; y-%.4f;\n", new_pos.x, new_pos.y);
   game_dt->player.pos.x = new_pos.x;
   game_dt->player.pos.y = new_pos.y;
 }

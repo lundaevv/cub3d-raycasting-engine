@@ -1,4 +1,5 @@
 #include "render.h"
+#include "types.h"
 
 static void draw_wall(t_game game_dt, t_raycast_data ray_data, double wall_h,
                       const int col_x) {
@@ -8,13 +9,13 @@ static void draw_wall(t_game game_dt, t_raycast_data ray_data, double wall_h,
   double tex_y;
 
   if (ray_data.side == EAST_S)
-    tex = &game_dt.graphics.textures[EAST_S];
+    tex = &game_dt.graphics.tex[TEX_EW];
   else if (ray_data.side == SOUTH_S)
-    tex = &game_dt.graphics.textures[SOUTH_S];
+    tex = &game_dt.graphics.tex[TEX_SW];
   else if (ray_data.side == WEST_S)
-    tex = &game_dt.graphics.textures[WEST_S];
+    tex = &game_dt.graphics.tex[TEX_WW];
   else
-    tex = &game_dt.graphics.textures[NORTH_S];
+    tex = &game_dt.graphics.tex[TEX_NW];
   draw_start = (game_dt.mlx.win_h - (int)wall_h) / 2;
   draw_end = (game_dt.mlx.win_h + (int)wall_h) / 2;
   tex_y = 0;
@@ -43,13 +44,13 @@ static void draw_column(t_game game_dt, double proj_plane,
     bottom = game_dt.mlx.win_h - 1;
   y = 0;
   while (y < top) {
-    putp(&game_dt.mlx.frame, (int)col_x, y, game_dt.graphics.ceil_col);
+    putp(&game_dt.mlx.frame, (int)col_x, y, game_dt.graphics.ceil_rgb);
     y++;
   }
   draw_wall(game_dt, ray_data, wall_h, col_x);
   y = bottom + 1;
   while (y < game_dt.mlx.win_h) {
-    putp(&game_dt.mlx.frame, (int)col_x, y, game_dt.graphics.floor_col);
+    putp(&game_dt.mlx.frame, (int)col_x, y, game_dt.graphics.floor_rgb);
     y++;
   }
 }

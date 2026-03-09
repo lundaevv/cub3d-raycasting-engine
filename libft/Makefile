@@ -6,7 +6,7 @@
 #    By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/13 03:11:33 by vlundaev          #+#    #+#              #
-#    Updated: 2026/01/21 15:19:11 by vlundaev         ###   ########.fr        #
+#    Updated: 2026/03/02 15:07:57 by vlundaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ CSTD	= 						\
 		ft_isascii.c			\
 		ft_isdigit.c			\
 		ft_isprint.c			\
+		ft_isspace.c			\
 		ft_itoa.c				\
 		ft_memchr.c				\
 		ft_memcmp.c				\

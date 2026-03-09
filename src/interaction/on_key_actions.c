@@ -1,4 +1,6 @@
 #include "interaction.h"
+#include "utils.h"
+#include <stdio.h>
 
 int on_key_press(int key, void *param) {
   t_game *game_dt = (t_game *)param;
@@ -6,7 +8,7 @@ int on_key_press(int key, void *param) {
   // printf("Player pos: x-%f, y-%f\n", game_dt->player.pos.x,
   //        game_dt->player.pos.y);
   if (key == K_ESC)
-    exit(0);
+    destroy(game_dt);
   if (key == K_W || key == K_UP)
     game_dt->inp.w = 1;
   if (key == K_S || key == K_DOWN)

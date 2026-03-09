@@ -618,6 +618,23 @@
     "output": "obj/cstd/ft_isprint.o"
   },
   {
+    "file": "src/cstd/ft_isspace.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-I",
+      "includes",
+      "-c",
+      "src/cstd/ft_isspace.c",
+      "-o",
+      "obj/cstd/ft_isspace.o"
+    ],
+    "directory": "/home/dev/Work/cub3D/libft",
+    "output": "obj/cstd/ft_isspace.o"
+  },
+  {
     "file": "src/cstd/ft_itoa.c",
     "arguments": [
       "cc",
@@ -1111,122 +1128,703 @@
     "output": "obj/gnl/get_next_line.o"
   },
   {
-    "file": "src/utils/get_time_sec.c",
+    "file": "main.c",
     "arguments": [
       "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
       "-g",
       "-std=gnu11",
       "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
       "-c",
+      "main.c",
       "-o",
-      "src/utils/get_time_sec.o",
-      "src/utils/get_time_sec.c"
+      "obj/main.o"
     ],
     "directory": "/home/dev/Work/cub3D",
-    "output": "src/utils/get_time_sec.o"
+    "output": "obj/main.o"
+  },
+  {
+    "file": "src/init/init.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/init/init.c",
+      "-o",
+      "obj/src/init/init.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/init/init.o"
+  },
+  {
+    "file": "src/init/argc.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/init/argc.c",
+      "-o",
+      "obj/src/init/argc.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/init/argc.o"
+  },
+  {
+    "file": "src/init/init_graphics.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/init/init_graphics.c",
+      "-o",
+      "obj/src/init/init_graphics.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/init/init_graphics.o"
   },
   {
     "file": "src/utils/get_cell_type.c",
     "arguments": [
       "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
       "-g",
       "-std=gnu11",
       "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
       "-c",
+      "src/utils/get_cell_type.c",
       "-o",
-      "src/utils/get_cell_type.o",
-      "src/utils/get_cell_type.c"
+      "obj/src/utils/get_cell_type.o"
     ],
     "directory": "/home/dev/Work/cub3D",
-    "output": "src/utils/get_cell_type.o"
+    "output": "obj/src/utils/get_cell_type.o"
+  },
+  {
+    "file": "src/utils/get_time_sec.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/utils/get_time_sec.c",
+      "-o",
+      "obj/src/utils/get_time_sec.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/utils/get_time_sec.o"
+  },
+  {
+    "file": "src/utils/destroy.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/utils/destroy.c",
+      "-o",
+      "obj/src/utils/destroy.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/utils/destroy.o"
+  },
+  {
+    "file": "src/errors/print_msg.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/errors/print_msg.c",
+      "-o",
+      "obj/src/errors/print_msg.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/errors/print_msg.o"
+  },
+  {
+    "file": "src/errors/print_errno.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/errors/print_errno.c",
+      "-o",
+      "obj/src/errors/print_errno.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/errors/print_errno.o"
+  },
+  {
+    "file": "src/parser/parse.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/parse.c",
+      "-o",
+      "obj/src/parser/parse.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/parse.o"
+  },
+  {
+    "file": "src/parser/parse_utils.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/parse_utils.c",
+      "-o",
+      "obj/src/parser/parse_utils.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/parse_utils.o"
+  },
+  {
+    "file": "src/parser/parse_file.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/parse_file.c",
+      "-o",
+      "obj/src/parser/parse_file.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/parse_file.o"
+  },
+  {
+    "file": "src/parser/config/parse_config.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/config/parse_config.c",
+      "-o",
+      "obj/src/parser/config/parse_config.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/config/parse_config.o"
+  },
+  {
+    "file": "src/parser/config/parse_config_utils.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/config/parse_config_utils.c",
+      "-o",
+      "obj/src/parser/config/parse_config_utils.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/config/parse_config_utils.o"
+  },
+  {
+    "file": "src/parser/config/parse_config_store.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/config/parse_config_store.c",
+      "-o",
+      "obj/src/parser/config/parse_config_store.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/config/parse_config_store.o"
+  },
+  {
+    "file": "src/parser/config/parse_config_color.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/config/parse_config_color.c",
+      "-o",
+      "obj/src/parser/config/parse_config_color.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/config/parse_config_color.o"
+  },
+  {
+    "file": "src/parser/map/parse_map.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/map/parse_map.c",
+      "-o",
+      "obj/src/parser/map/parse_map.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/map/parse_map.o"
+  },
+  {
+    "file": "src/parser/map/parse_map_find_block.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/map/parse_map_find_block.c",
+      "-o",
+      "obj/src/parser/map/parse_map_find_block.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/map/parse_map_find_block.o"
+  },
+  {
+    "file": "src/parser/map/parse_map_utils.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/map/parse_map_utils.c",
+      "-o",
+      "obj/src/parser/map/parse_map_utils.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/map/parse_map_utils.o"
+  },
+  {
+    "file": "src/parser/map/parse_map_validate.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/map/parse_map_validate.c",
+      "-o",
+      "obj/src/parser/map/parse_map_validate.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/map/parse_map_validate.o"
+  },
+  {
+    "file": "src/parser/map/parse_map_normalize.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/map/parse_map_normalize.c",
+      "-o",
+      "obj/src/parser/map/parse_map_normalize.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/map/parse_map_normalize.o"
+  },
+  {
+    "file": "src/parser/map/parse_map_closed.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/map/parse_map_closed.c",
+      "-o",
+      "obj/src/parser/map/parse_map_closed.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/map/parse_map_closed.o"
+  },
+  {
+    "file": "src/parser/map/parse_map_boundary.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/map/parse_map_boundary.c",
+      "-o",
+      "obj/src/parser/map/parse_map_boundary.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/map/parse_map_boundary.o"
+  },
+  {
+    "file": "src/parser/entities/parse_player.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/entities/parse_player.c",
+      "-o",
+      "obj/src/parser/entities/parse_player.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/entities/parse_player.o"
+  },
+  {
+    "file": "src/parser/entities/parse_door.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/entities/parse_door.c",
+      "-o",
+      "obj/src/parser/entities/parse_door.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/entities/parse_door.o"
+  },
+  {
+    "file": "src/parser/entities/parse_tile.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/entities/parse_tile.c",
+      "-o",
+      "obj/src/parser/entities/parse_tile.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/entities/parse_tile.o"
+  },
+  {
+    "file": "src/parser/entities/parse_sprite.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/parser/entities/parse_sprite.c",
+      "-o",
+      "obj/src/parser/entities/parse_sprite.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/parser/entities/parse_sprite.o"
   },
   {
     "file": "src/interaction/on_key_actions.c",
     "arguments": [
       "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
       "-g",
       "-std=gnu11",
       "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
       "-c",
+      "src/interaction/on_key_actions.c",
       "-o",
-      "src/interaction/on_key_actions.o",
-      "src/interaction/on_key_actions.c"
+      "obj/src/interaction/on_key_actions.o"
     ],
     "directory": "/home/dev/Work/cub3D",
-    "output": "src/interaction/on_key_actions.o"
+    "output": "obj/src/interaction/on_key_actions.o"
   },
   {
     "file": "src/interaction/move_player.c",
     "arguments": [
       "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
       "-g",
       "-std=gnu11",
       "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
       "-c",
+      "src/interaction/move_player.c",
       "-o",
-      "src/interaction/move_player.o",
-      "src/interaction/move_player.c"
+      "obj/src/interaction/move_player.o"
     ],
     "directory": "/home/dev/Work/cub3D",
-    "output": "src/interaction/move_player.o"
+    "output": "obj/src/interaction/move_player.o"
   },
   {
     "file": "src/interaction/rotate_player.c",
     "arguments": [
       "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
       "-g",
       "-std=gnu11",
       "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
       "-c",
+      "src/interaction/rotate_player.c",
       "-o",
-      "src/interaction/rotate_player.o",
-      "src/interaction/rotate_player.c"
+      "obj/src/interaction/rotate_player.o"
     ],
     "directory": "/home/dev/Work/cub3D",
-    "output": "src/interaction/rotate_player.o"
+    "output": "obj/src/interaction/rotate_player.o"
   },
   {
     "file": "src/render/raycast.c",
     "arguments": [
       "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
       "-g",
       "-std=gnu11",
       "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
       "-c",
+      "src/render/raycast.c",
       "-o",
-      "src/render/raycast.o",
-      "src/render/raycast.c"
+      "obj/src/render/raycast.o"
     ],
     "directory": "/home/dev/Work/cub3D",
-    "output": "src/render/raycast.o"
+    "output": "obj/src/render/raycast.o"
+  },
+  {
+    "file": "src/render/get_texture_x.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/render/get_texture_x.c",
+      "-o",
+      "obj/src/render/get_texture_x.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/render/get_texture_x.o"
+  },
+  {
+    "file": "src/render/draw_map.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/render/draw_map.c",
+      "-o",
+      "obj/src/render/draw_map.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/render/draw_map.o"
   },
   {
     "file": "src/render/render_utils.c",
     "arguments": [
       "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
       "-g",
       "-std=gnu11",
       "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
       "-c",
+      "src/render/render_utils.c",
       "-o",
-      "src/render/render_utils.o",
-      "src/render/render_utils.c"
+      "obj/src/render/render_utils.o"
     ],
     "directory": "/home/dev/Work/cub3D",
-    "output": "src/render/render_utils.o"
+    "output": "obj/src/render/render_utils.o"
   },
   {
-    "file": "renderer_main.c",
+    "file": "src/render/render.c",
     "arguments": [
       "cc",
-      "renderer_main.c",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
       "-g",
       "-std=gnu11",
       "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/render/render.c",
       "-o",
-      "render_exe"
+      "obj/src/render/render.o"
     ],
     "directory": "/home/dev/Work/cub3D",
-    "output": "render_exe"
+    "output": "obj/src/render/render.o"
   }
 ]

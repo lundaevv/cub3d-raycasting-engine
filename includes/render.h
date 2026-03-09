@@ -25,5 +25,4 @@ void blit_colorkey(t_img *dst, t_img *src, int dx, int dy);
 t_raycast_data raycast(t_game game_dt, double angle);
 double get_texture_x(t_game game_dt, t_raycast_data ray_data,
                      const double sin_val, const double cos_val);
-
 #endif
