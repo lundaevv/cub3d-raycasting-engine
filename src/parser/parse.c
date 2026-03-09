@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 15:32:50 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 17:22:58 by vlundaev         ###   ########.fr       */
+/*   Created: 2026/02/25 15:31:26 by vlundaev          #+#    #+#             */
+/*   Updated: 2026/03/06 12:27:27 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
-
-#include "../mlx/mlx.h"
-
-#include "../libft/includes/libft.h"
-#include "config.h"
-#include "errors.h"
-#include "interaction.h"
 #include "parser.h"
-#include "render.h"
-#include "types.h"
-#include "utils.h"
 
-#endif
+void	parse(t_game *game_dt, t_err *error)
+{
+	char	**lines;
+
+	lines = read_map_file_lines(game_dt, error);
+	if (!*error)
+		parse_graphics_config_block(lines, game_dt, error);
+	if (!*error)
+		parse_map_block(lines, game_dt, error);
+	free_lines(lines);
+}

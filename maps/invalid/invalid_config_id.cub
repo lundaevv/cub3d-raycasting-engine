@@ -1,0 +1,13 @@
+XX textures/walls/greystone.xpm
+NO textures/walls/redbrick.xpm
+SO textures/walls/purplestone.xpm
+WE textures/walls/wood.xpm
+F 220,100,0
+C 120,120,255
+EA textures/walls/greystone.xpm
+
+111111
+100001
+10N001
+100001
+111111

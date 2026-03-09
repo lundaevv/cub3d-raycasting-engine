@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   parse_sprite.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 15:32:50 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 17:22:58 by vlundaev         ###   ########.fr       */
+/*   Created: 2026/03/04 16:18:06 by vlundaev          #+#    #+#             */
+/*   Updated: 2026/03/04 16:23:06 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
-
-#include "../mlx/mlx.h"
-
-#include "../libft/includes/libft.h"
-#include "config.h"
-#include "errors.h"
-#include "interaction.h"
 #include "parser.h"
-#include "render.h"
-#include "types.h"
-#include "utils.h"
 
-#endif
+int	count_sprites(t_map *map)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (i < map->rows)
+	{
+		j = 0;
+		while (j < map->cols)
+		{
+			if (map->grid[i][j] == 'A')
+				count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
+}

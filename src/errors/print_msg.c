@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   print_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 15:32:50 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 17:22:58 by vlundaev         ###   ########.fr       */
+/*   Created: 2026/02/25 15:31:49 by vlundaev          #+#    #+#             */
+/*   Updated: 2026/03/02 13:38:00 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
-
-#include "../mlx/mlx.h"
-
-#include "../libft/includes/libft.h"
-#include "config.h"
 #include "errors.h"
-#include "interaction.h"
-#include "parser.h"
-#include "render.h"
-#include "types.h"
-#include "utils.h"
+#include "libft.h"
 
-#endif
+int	print_msg(const char *str, const char *detail, int exit_no)
+{
+	if (!detail)
+		ft_printf(str, STR_PROG_NAME);
+	else
+		ft_printf(str, STR_PROG_NAME, detail);
+	return (exit_no);
+}

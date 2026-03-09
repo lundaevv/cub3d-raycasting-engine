@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   parse_map_boundary.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 15:32:50 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/02/25 17:22:58 by vlundaev         ###   ########.fr       */
+/*   Created: 2026/03/04 18:38:04 by vlundaev          #+#    #+#             */
+/*   Updated: 2026/03/06 12:37:23 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-#define MAIN_H
-
-#include "../mlx/mlx.h"
-
-#include "../libft/includes/libft.h"
-#include "config.h"
-#include "errors.h"
-#include "interaction.h"
 #include "parser.h"
-#include "render.h"
-#include "types.h"
-#include "utils.h"
 
-#endif
+void	validate_map_terminator(char **lines, int i, t_err *error)
+{
+	while (lines[i])
+	{
+		if (!is_empty_line(lines[i]))
+		{
+			*error = ERR_MAP_GAP;
+			return ;
+		}
+		i++;
+	}
+	*error = ERR_MAP_TRAIL;
+}
