@@ -6,7 +6,7 @@
 #    By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 19:41:52 by vlundaev          #+#    #+#              #
-#    Updated: 2026/03/06 15:42:48 by vlundaev         ###   ########.fr        #
+#    Updated: 2026/03/10 12:03:05 by vlundaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC_INIT = \
 	src/init/init_graphics.c
 
 SRC_UTILS = \
+	src/utils/get_cell_type.c \
 	src/utils/get_time_sec.c \
 	src/utils/destroy.c
 
@@ -56,14 +57,20 @@ SRC_PARSER = \
 	src/parser/entities/parse_tile.c \
 	src/parser/entities/parse_sprite.c
 
-SRC_RENDER = \
-	src/render/render.c
-
+SRC_INTERACTION = src/interaction/on_key_actions.c \
+									src/interaction/move_player.c \
+									src/interaction/rotate_player.c
+SRC_RENDER = src/render/raycast.c \
+						 src/render/get_texture_x.c \
+						 src/render/draw_map.c \
+						 src/render/render_utils.c \
+						 src/render/render.c
 SRC = main.c \
 	$(SRC_INIT) \
 	$(SRC_UTILS) \
 	$(SRC_ERRORS) \
 	$(SRC_PARSER) \
+	$(SRC_INTERACTION) \
 	$(SRC_RENDER)
 
 OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
@@ -82,6 +89,10 @@ $(MLX):
 		if [ ! -f "$(MLX)" ]; then echo "libmlx.a missing -> recloning"; \
 			rm -rf "$(MLXDIR)"; \
 			git clone https://github.com/42paris/minilibx-linux.git "$(MLXDIR)"; \
+			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/Makefile.gen; \
+			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/test/Makefile.gen; \
+			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/Makefile.mk; \
+			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/test/Makefile.mk; \
 		fi; \
 		$(MAKE) -C "$(MLXDIR)"; \
 	}

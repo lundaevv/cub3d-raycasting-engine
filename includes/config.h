@@ -6,17 +6,22 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:56 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 19:58:10 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/10 11:59:58 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONFIG_H
-# define CONFIG_H
+#define CONFIG_H
 
-# define PI 3.14159265358979323846
+#define PI 3.14159265358979323846
+
+#include "math.h"
 
 // Tile sizes
-# define TILE_SIZE 40
+#define TILE_SIZE 40
+#define FOV M_PI_2
+#define WORLD_HEIGHT 1
+#define TILE_SIZE 40
 // Map textures
 # define TEXTURE_EMPTY "textures/tiles/empty.xpm"
 # define TEXTURE_WALL "textures/tiles/wall.xpm"
@@ -26,13 +31,13 @@
 # define TEXTURE_PLAYER_IDLE "textures/player/idle.xpm"
 
 // Linux (X11) keycodes
-# define LINUX
-# ifdef LINUX
-#  define KEY_PRESS 2
-#  define KEY_RELEASE 3
-#  define DESTROY_NOTIFY 17
-#  define KEY_PRESS_MASK 1L
-#  define KEY_RELEASE_MASK 2L
+#define LINUX
+#ifdef LINUX
+#define KEY_PRESS 2
+#define KEY_RELEASE 3
+#define DESTROY_NOTIFY 17
+#define KEY_PRESS_MASK 1L
+#define KEY_RELEASE_MASK 2L
 
 #  define K_ESC 65307
 #  define K_W 119
