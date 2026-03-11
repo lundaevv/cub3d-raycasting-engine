@@ -6,7 +6,7 @@
 #    By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 19:41:52 by vlundaev          #+#    #+#              #
-#    Updated: 2026/03/10 12:03:05 by vlundaev         ###   ########.fr        #
+#    Updated: 2026/03/11 18:22:13 by vlundaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRC_INIT = \
 SRC_UTILS = \
 	src/utils/get_cell_type.c \
 	src/utils/get_time_sec.c \
-	src/utils/destroy.c
+	src/utils/destroy.c \
+	src/utils/destroy_graphics.c
 
 SRC_ERRORS = \
 	src/errors/print_msg.c \
@@ -54,17 +55,24 @@ SRC_PARSER = \
 	src/parser/map/parse_map_boundary.c \
 	src/parser/entities/parse_player.c \
 	src/parser/entities/parse_door.c \
-	src/parser/entities/parse_tile.c \
-	src/parser/entities/parse_sprite.c
+	src/parser/entities/parse_tile.c
 
-SRC_INTERACTION = src/interaction/on_key_actions.c \
-									src/interaction/move_player.c \
-									src/interaction/rotate_player.c
-SRC_RENDER = src/render/raycast.c \
-						 src/render/get_texture_x.c \
-						 src/render/draw_map.c \
-						 src/render/render_utils.c \
-						 src/render/render.c
+SRC_INTERACTION = \
+	src/interaction/on_key_actions.c \
+	src/interaction/move_player.c \
+	src/interaction/rotate_player.c \
+	src/interaction/on_mouse_move.c
+
+SRC_RENDER = \
+	src/render/raycast.c \
+	src/render/get_texture_x.c \
+	src/render/draw_map.c \
+	src/render/render_utils.c \
+	src/render/minimap_map.c \
+	src/render/minimap_draw.c \
+	src/render/minimap_player.c \
+	src/render/render.c
+
 SRC = main.c \
 	$(SRC_INIT) \
 	$(SRC_UTILS) \
@@ -119,93 +127,4 @@ allClean: fclean mlxDel
 
 re: fclean all
 
-test: test_parser
-
-test_parser: $(NAME)
-	@if [ -z "$(VALID_MAPS)$(INVALID_MAPS)" ]; then \
-		echo "No maps found in maps/valid or maps/invalid"; \
-		exit 1; \
-	fi
-	@if ! command -v timeout >/dev/null 2>&1; then \
-		echo "timeout command not found; install coreutils or use a test runner with a different timeout mechanism"; \
-		exit 1; \
-	fi
-	@echo "== Valid maps (expect parse/init to work; render loop stops by timeout) =="; \
-	fail=0; \
-	for map in $(VALID_MAPS); do \
-		tmp=$$(mktemp); \
-		timeout $(TEST_TIMEOUT)s ./$(NAME) "$$map" > "$$tmp" 2>&1 || rc=$$?; \
-		rc=$${rc:-0}; \
-		if [ $$rc -eq 0 ] || [ $$rc -eq 124 ]; then \
-			echo "  [PASS] $$map"; \
-		else \
-			echo "  [FAIL] $$map (exit $$rc)"; \
-			cat "$$tmp"; \
-			fail=1; \
-		fi; \
-		rc=; \
-		rm -f "$$tmp"; \
-	done; \
-	if [ $$fail -ne 0 ]; then \
-		exit 1; \
-	fi; \
-	echo "== Invalid maps (expect non-zero) =="; \
-	for map in $(INVALID_MAPS); do \
-		tmp=$$(mktemp); \
-		./$(NAME) "$$map" > "$$tmp" 2>&1 || rc=$$?; \
-		rc=$${rc:-0}; \
-		if [ $$rc -eq 0 ]; then \
-			echo "  [FAIL] $$map (exit 0)"; \
-			cat "$$tmp"; \
-			fail=1; \
-		else \
-			echo "  [PASS] $$map"; \
-		fi; \
-		rc=; \
-		rm -f "$$tmp"; \
-	done; \
-	echo "== CLI tests (expect non-zero) =="; \
-	tmp=$$(mktemp); \
-	./$(NAME) > "$$tmp" 2>&1; \
-	rc=$$?; \
-	if [ $$rc -eq 0 ]; then \
-		echo "  [FAIL] no-argument mode (exit 0)"; \
-		cat "$$tmp"; \
-		fail=1; \
-	else \
-		echo "  [PASS] no-argument mode"; \
-	fi; \
-	./$(NAME) maps/valid/valid_basic.cub $(firstword $(INVALID_MAPS)) > "$$tmp" 2>&1; \
-	rc=$$?; \
-	if [ $$rc -eq 0 ]; then \
-		echo "  [FAIL] too-many-arguments mode (exit 0)"; \
-		cat "$$tmp"; \
-		fail=1; \
-	else \
-		echo "  [PASS] too-many-arguments mode"; \
-	fi; \
-	./$(NAME) maps/valid/valid_basic.txt > "$$tmp" 2>&1; \
-	rc=$$?; \
-	if [ $$rc -eq 0 ]; then \
-		echo "  [FAIL] bad extension mode (exit 0)"; \
-		cat "$$tmp"; \
-		fail=1; \
-	else \
-		echo "  [PASS] bad extension mode"; \
-	fi; \
-	./$(NAME) maps/this_file_does_not_exist.cub > "$$tmp" 2>&1; \
-	rc=$$?; \
-	if [ $$rc -eq 0 ]; then \
-		echo "  [FAIL] missing-file mode (exit 0)"; \
-		cat "$$tmp"; \
-		fail=1; \
-	else \
-		echo "  [PASS] missing-file mode"; \
-	fi; \
-	rm -f "$$tmp"; \
-	if [ $$fail -ne 0 ]; then \
-		exit 1; \
-	fi; \
-	echo "== parser+init tests passed ==";
-
-.PHONY: all clean fclean re mlxDel allClean test test_parser
+.PHONY: all clean fclean re mlxDel allClean

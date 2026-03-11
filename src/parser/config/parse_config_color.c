@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 19:31:04 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/06 11:21:57 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:12:13 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ static int	parse_rgb_values(char **parts, int *r, int *g, int *b)
 
 /*
 r <<  16 | g << 8 | b	-	this is the standard way to pack RGB values
- 	into a single integer. It works as follows:
- - The red component (r) is shifted left by 16 bits, 
+	into a single integer. It works as follows:
+ - The red component (r) is shifted left by 16 bits,
 		which means it occupies the highest byte of the resulting integer.
- - The green component (g) is shifted left by 8 bits, 
+ - The green component (g) is shifted left by 8 bits,
 		which means it occupies the middle byte of the resulting integer.
- - The blue component (b) is not shifted, 
-		so it occupies the lowest byte of the resulting integer. 
+ - The blue component (b) is not shifted,
+		so it occupies the lowest byte of the resulting integer.
 */
 int	parse_rgb_color(char *value, int *out_color)
 {

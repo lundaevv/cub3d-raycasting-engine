@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 14:25:59 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/06 11:20:39 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:12:26 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@ static bool	is_valid_door(t_map *map, int row, int col)
 		return (false);
 	if (row == map->rows - 1 || col == map->cols - 1)
 		return (false);
-	horizontal = is_wall(map->grid[row][col - 1])
-		&& is_wall(map->grid[row][col + 1])
-		&& is_walkable_tile(map->grid[row - 1][col])
+	horizontal = is_wall(map->grid[row][col - 1]) && is_wall(map->grid[row][col
+			+ 1]) && is_walkable_tile(map->grid[row - 1][col])
 		&& is_walkable_tile(map->grid[row + 1][col]);
-	vertical = is_wall(map->grid[row - 1][col])
-		&& is_wall(map->grid[row + 1][col])
-		&& is_walkable_tile(map->grid[row][col - 1])
+	vertical = is_wall(map->grid[row - 1][col]) && is_wall(map->grid[row
+			+ 1][col]) && is_walkable_tile(map->grid[row][col - 1])
 		&& is_walkable_tile(map->grid[row][col + 1]);
 	if (horizontal || vertical)
 		return (true);

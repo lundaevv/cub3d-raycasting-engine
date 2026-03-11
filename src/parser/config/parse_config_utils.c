@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 18:56:05 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 12:21:30 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:53:23 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,12 @@ int	get_config_id(char *line)
 		return (2);
 	if (!ft_strncmp(&line[i], "EA", 2) && ft_isspace(line[i + 2]))
 		return (3);
-	if (!ft_strncmp(&line[i], "DC", 2) && ft_isspace(line[i + 2]))
+	if (line[i] == 'D' && ft_isspace(line[i + 1]))
 		return (4);
-	if (!ft_strncmp(&line[i], "DO", 2) && ft_isspace(line[i + 2]))
-		return (5);
-	if (!ft_strncmp(&line[i], "SP", 2) && ft_isspace(line[i + 2]))
-		return (6);
 	if (line[i] == 'F' && ft_isspace(line[i + 1]))
-		return (7);
+		return (5);
 	if (line[i] == 'C' && ft_isspace(line[i + 1]))
-		return (8);
+		return (6);
 	return (-1);
 }
 
@@ -47,7 +43,7 @@ char	*get_config_value(char *line)
 	i = 0;
 	while (line[i] && ft_isspace(line[i]))
 		i++;
-	if (line[i] == 'F' || line[i] == 'C')
+	if (line[i] == 'F' || line[i] == 'C' || line[i] == 'D')
 		i++;
 	else
 		i += 2;
