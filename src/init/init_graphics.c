@@ -6,12 +6,12 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 19:48:34 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/06 12:40:09 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:11:49 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
 #include "mlx.h"
+#include "utils.h"
 
 static int	init_mlx_core(t_game *game_dt)
 {
@@ -26,8 +26,12 @@ static int	init_mlx_core(t_game *game_dt)
 	game_dt->mlx.win_h = (sh * 3) / 4;
 	if (game_dt->mlx.win_w < 640)
 		game_dt->mlx.win_w = 640;
+	if (game_dt->mlx.win_w > 1280)
+		game_dt->mlx.win_w = 1280;
 	if (game_dt->mlx.win_h < 480)
 		game_dt->mlx.win_h = 480;
+	if (game_dt->mlx.win_h > 720)
+		game_dt->mlx.win_h = 720;
 	game_dt->mlx.win = mlx_new_window(game_dt->mlx.context, game_dt->mlx.win_w,
 			game_dt->mlx.win_h, "cub3D");
 	return (game_dt->mlx.win != NULL);
@@ -61,10 +65,6 @@ static char	*get_tex_path(t_config *config, int id)
 		return (config->path_ew);
 	if (id == TEX_DOOR_CLOSED)
 		return (config->path_door_closed);
-	if (id == TEX_DOOR_OPEN)
-		return (config->path_door_open);
-	if (id == TEX_SPRITE_ANIM)
-		return (config->path_sprite_anim);
 	return (NULL);
 }
 

@@ -6,12 +6,12 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:31:43 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/05 17:18:11 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:11:47 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
 #include "libft.h"
+#include "utils.h"
 
 static bool	has_cube_extension(const char *filename)
 {

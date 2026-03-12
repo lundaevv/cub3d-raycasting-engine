@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:53 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/06 12:41:26 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:10:34 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@
 # define ERRMSG_MEM "out of memory"
 # define ERRMSG_CONF_DUP "duplicate config"
 # define ERRMSG_CONF_MISS "missing config"
-# define ERRMSG_DOOR_CONF_MISS "missing door configs (DC/DO)"
-# define ERRMSG_SPR_CONF_MISS "missing sprite config (SP)"
+# define ERRMSG_DOOR_CONF_MISS "missing door config"
 # define ERRMSG_CONF_PATH "invalid texture path"
 # define ERRMSG_CONF_COLOR "invalid color"
 # define ERRMSG_MAP_EMPTY "map missing"
@@ -51,7 +50,6 @@
 	ERR_CONF_DUP,		duplicate config (e.g. multiple floor colors)
 	ERR_CONF_MISS,		missing config (e.g. no ceiling color)
 	ERR	DOOR_CONF_MISS,	door config missing (map has doors but no door textures)
-	ERR_SPR_CONF_MISS,	spr conf missing (map has sprites but no sprite texture)
 	ERR_CONF_PATH,		invalid texture path (file not found or not readable)
 	ERR_CONF_COLOR,		invalid color (e.g. non-numeric, out of range)
 	ERR_MAP_EMPTY,		map missing (no lines read)
@@ -79,7 +77,6 @@ typedef enum e_err
 	ERR_CONF_DUP,
 	ERR_CONF_MISS,
 	ERR_DOOR_CONF_MISS,
-	ERR_SPR_CONF_MISS,
 	ERR_CONF_PATH,
 	ERR_CONF_COLOR,
 	ERR_MAP_EMPTY,
@@ -95,10 +92,10 @@ typedef enum e_err
 	ERR_FILE_BLANK,
 	ERR_FILE_EMPTY,
 	ERR_CONF_ID
-}	t_err;
+}			t_err;
 
-int				print_msg(const char *str, const char *detail, int exit_no);
-int				print_errno(t_err err);
-const char		*msg_for_err(t_err err);
+int			print_msg(const char *str, const char *detail, int exit_no);
+int			print_errno(t_err err);
+const char	*msg_for_err(t_err err);
 
 #endif

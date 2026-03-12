@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 19:08:49 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/04 16:30:44 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/11 14:46:27 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ static void	set_texture_path(t_config *config, int id, char *value)
 		config->path_ew = value;
 	else if (id == 4)
 		config->path_door_closed = value;
-	else if (id == 5)
-		config->path_door_open = value;
-	else if (id == 6)
-		config->path_sprite_anim = value;
 }
 
 static int	validate_texture_path(char *path)
@@ -62,7 +58,7 @@ static int	store_color(int id, char *value, t_game *game_dt, t_err *error)
 		*error = ERR_CONF_COLOR;
 		return (0);
 	}
-	if (id == 7)
+	if (id == 5)
 		game_dt->config.floor_rgb = color;
 	else
 		game_dt->config.ceil_rgb = color;
@@ -77,13 +73,13 @@ int	store_config_value(char *line, int id, t_game *game_dt, t_err *error)
 	if (!value || !value[0])
 	{
 		free(value);
-		if (id < 7)
+		if (id < 5)
 			*error = ERR_CONF_PATH;
 		else
 			*error = ERR_CONF_COLOR;
 		return (0);
 	}
-	if (id < 7)
+	if (id < 5)
 		return (store_texture(id, value, game_dt, error));
 	if (!store_color(id, value, game_dt, error))
 	{

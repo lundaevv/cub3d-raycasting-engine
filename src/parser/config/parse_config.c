@@ -6,16 +6,16 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 18:01:47 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/06 12:30:08 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/11 15:12:22 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static int	register_config(int seen[9], char *line,
-	t_game *game_dt, t_err *error)
+static int	register_config(int seen[7], char *line, t_game *game_dt,
+		t_err *error)
 {
-	int		id;
+	int	id;
 
 	id = get_config_id(line);
 	if (id < 0)
@@ -32,23 +32,23 @@ static int	register_config(int seen[9], char *line,
 	return (store_config_value(line, id, game_dt, error));
 }
 
-static void	init_seen(int seen[9])
+static void	init_seen(int seen[7])
 {
 	int	i;
 
 	i = 0;
-	while (i < 9)
+	while (i < 7)
 	{
 		seen[i] = 0;
 		i++;
 	}
 }
 
-static void	check_config_block(char **lines, int start,
-	t_game *game_dt, t_err *error)
+static void	check_config_block(char **lines, int start, t_game *game_dt,
+		t_err *error)
 {
 	int	i;
-	int	seen[9];
+	int	seen[7];
 
 	init_seen(seen);
 	i = start;
@@ -63,8 +63,8 @@ static void	check_config_block(char **lines, int start,
 		else
 			i++;
 	}
-	if (!*error && (!seen[0] || !seen[1] || !seen[2] || !seen[3]
-			|| !seen[7] || !seen[8]))
+	if (!*error && (!seen[0] || !seen[1] || !seen[2] || !seen[3] || !seen[5]
+			|| !seen[6]))
 		*error = ERR_CONF_MISS;
 }
 
