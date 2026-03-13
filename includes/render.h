@@ -11,30 +11,29 @@
 /* ************************************************************************** */
 
 #ifndef RENDER_H
-# define RENDER_H
+#define RENDER_H
 
-# include "../mlx/mlx.h"
-# include "config.h"
-# include "interaction.h"
-# include "types.h"
-# include "utils.h"
-# include <math.h>
-# include <minimap.h>
+#include "../mlx/mlx.h"
+#include "config.h"
+#include "interaction.h"
+#include "minimap.h"
+#include "types.h"
+#include "utils.h"
+#include <math.h>
 
-void			render(t_game *game_dt);
-int				pre_render(t_game game_dt);
-void			draw_map(t_game game_dt);
+void render(t_game *game_dt);
+void draw_map(t_game game_dt);
 
-int				show_menu_ui(void);
-int				show_ingame_ui(void);
+void show_menu_ui(t_game *game_dt);
+int show_ingame_ui(void);
 
 // Uttility functions for drawing pixels and blitting images
-void			putp(t_img *im, int x, int y, unsigned int c);
-unsigned int	getp(t_img *im, int x, int y);
-void			blit_copy(t_img *dst, t_img *src, int dx, int dy);
-void			blit_colorkey(t_img *dst, t_img *src, int dx, int dy);
+void putp(t_img *im, int x, int y, unsigned int c);
+unsigned int getp(t_img *im, int x, int y);
+void blit_copy(t_img *dst, t_img *src, int dx, int dy);
+void blit_colorkey(t_img *dst, t_img *src, int dx, int dy);
 
-t_raycast_data	raycast(t_game game_dt, double angle);
-double			get_texture_x(t_game game_dt, t_raycast_data ray_data,
-					const double sin_val, const double cos_val);
+t_raycast_data raycast(t_game game_dt, double angle);
+double get_texture_x(t_game game_dt, t_raycast_data ray_data,
+                     const double sin_val, const double cos_val);
 #endif
