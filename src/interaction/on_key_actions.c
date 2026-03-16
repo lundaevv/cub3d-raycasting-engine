@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "config.h"
 #include "interaction.h"
 
 static void toggle_mouse(t_game *game_dt) {
@@ -36,10 +37,14 @@ int on_key_press(int key, void *param) {
     game_dt->inp.w = 1;
   if (key == K_S || key == K_DOWN)
     game_dt->inp.s = 1;
-  if (key == K_A || key == K_LEFT)
+  if (key == K_A)
     game_dt->inp.a = 1;
-  if (key == K_D || key == K_RIGHT)
+  if (key == K_LEFT)
+    game_dt->inp.left = 1;
+  if (key == K_D)
     game_dt->inp.d = 1;
+  if (key == K_RIGHT)
+    game_dt->inp.right = 1;
   if (key == K_E)
     game_dt->inp.e = 1;
   return (0);
@@ -53,10 +58,14 @@ int on_key_release(int key, void *param) {
     game_dt->inp.w = 0;
   if (key == K_S || key == K_DOWN)
     game_dt->inp.s = 0;
-  if (key == K_A || key == K_LEFT)
+  if (key == K_A)
     game_dt->inp.a = 0;
-  if (key == K_D || key == K_RIGHT)
+  if (key == K_LEFT)
+    game_dt->inp.left = 0;
+  if (key == K_D)
     game_dt->inp.d = 0;
+  if (key == K_RIGHT)
+    game_dt->inp.right = 0;
   if (key == K_E)
     game_dt->inp.e = 0;
   return (0);

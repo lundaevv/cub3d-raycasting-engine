@@ -44,6 +44,8 @@ typedef struct s_input {
   int s;
   int a;
   int d;
+  int left;
+  int right;
   int e;
   int mouse_ready;
   int mouse_lock;
