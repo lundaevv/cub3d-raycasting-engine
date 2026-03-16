@@ -1788,6 +1788,26 @@
     "output": "obj/src/render/get_texture_x.o"
   },
   {
+    "file": "src/render/draw_door.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/render/draw_door.c",
+      "-o",
+      "obj/src/render/draw_door.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/render/draw_door.o"
+  },
+  {
     "file": "src/render/draw_map.c",
     "arguments": [
       "cc",

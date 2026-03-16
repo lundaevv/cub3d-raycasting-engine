@@ -11,18 +11,22 @@
 /* ************************************************************************** */
 
 #ifndef INTERACTION_H
-# define INTERACTION_H
+#define INTERACTION_H
 
-# include "config.h"
-# include "types.h"
-# include "utils.h"
-# include <math.h>
+#include "../mlx/mlx.h"
+#include "config.h"
+#include "types.h"
+#include "utils.h"
+#include <math.h>
 
-void	move_player(t_game *game_dt, double step);
-void	rotate_player(t_game *game_dt, double step);
+void move_player(t_game *game_dt, double step);
+void rotate_player(t_game *game_dt, double step);
 
-int		on_key_press(int key, void *param);
-int		on_key_release(int key, void *param);
-int		on_mouse_move(int x, int y, void *param);
+int on_key_press(int key, void *param);
+int on_key_release(int key, void *param);
+int on_mouse_move(int x, int y, void *param);
+
+void check_door_in_range(t_game *game_dt);
+void interact_door(t_game *game_dt);
 
 #endif

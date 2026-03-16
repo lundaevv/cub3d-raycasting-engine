@@ -27,14 +27,16 @@ static int update(t_game *game_dt) {
   double dt;
   double step;
 
-  dt = t - game_dt->inp.last_time;
   game_dt->mlx.time = t;
+  dt = t - game_dt->inp.last_time;
   step = dt * 40;
   game_dt->inp.last_time = t;
   if (dt > 0.05)
     dt = 0.05;
   move_player(game_dt, step);
   rotate_player(game_dt, step * 0.1);
+  check_door_in_range(game_dt);
+  interact_door(game_dt);
   draw_map(*game_dt);
   draw_minimap(*game_dt);
   mlx_put_image_to_window(game_dt->mlx.context, game_dt->mlx.win,

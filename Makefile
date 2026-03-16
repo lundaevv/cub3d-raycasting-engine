@@ -61,11 +61,13 @@ SRC_INTERACTION = \
 	src/interaction/on_key_actions.c \
 	src/interaction/move_player.c \
 	src/interaction/rotate_player.c \
-	src/interaction/on_mouse_move.c
+	src/interaction/on_mouse_move.c \
+	src/interaction/door.c
 
 SRC_RENDER = \
 	src/render/raycast.c \
 	src/render/get_texture_x.c \
+	src/render/draw_door.c \
 	src/render/draw_map.c \
 	src/render/render_utils.c \
 	src/render/minimap_map.c \

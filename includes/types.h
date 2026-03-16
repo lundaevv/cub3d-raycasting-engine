@@ -15,6 +15,16 @@
 
 #include <stdint.h>
 
+typedef struct s_vec {
+  double x;
+  double y;
+} t_vec;
+
+typedef struct s_vec_int {
+  int x;
+  int y;
+} t_vec_int;
+
 // NOTE: Additional enum and struct for storing result of calculations from
 // raycast.
 typedef enum e_cell_side { NORTH_S, SOUTH_S, WEST_S, EAST_S } t_cell_side;
@@ -34,16 +44,11 @@ typedef struct s_input {
   int s;
   int a;
   int d;
+  int e;
   int mouse_ready;
   int mouse_lock;
   int mouse_on;
 } t_input;
-
-// TODO: Decide should it be a double or int?
-typedef struct s_vec {
-  double x;
-  double y;
-} t_vec;
 
 typedef struct s_img {
   void *img;
@@ -104,6 +109,18 @@ typedef struct s_mlx {
   double time;
 } t_mlx;
 
+typedef struct s_door {
+  t_vec_int map_pos;
+  struct s_door *next;
+} t_door;
+
+typedef struct s_door_list {
+  t_door *head;
+  t_door *tail;
+  short int is_in_range;
+  short int is_inside;
+} t_door_list;
+
 // Main game struct, passed to all functions. Stores all game state.
 typedef struct s_game {
   t_mlx mlx;           /* MLX handles + screen size */
@@ -112,6 +129,7 @@ typedef struct s_game {
   t_config config;     /* parsed config/paths/colors */
   t_map map;           /* map grid and dimensions */
   t_player player;     /* player position and camera */
+  t_door_list door_li; /* structure to store data about door*/
   t_input inp;         /* currently pressed buttons */
 } t_game;
 

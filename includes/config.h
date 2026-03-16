@@ -34,6 +34,7 @@
 // Linux (X11) keycodes
 #define LINUX
 #ifdef LINUX
+
 #define KEY_PRESS 2
 #define KEY_RELEASE 3
 #define DESTROY_NOTIFY 17
@@ -43,11 +44,14 @@
 #define POINTER_MOTION_MASK 64L
 
 #define K_ESC 65307
+
 #define K_W 119
 #define K_A 97
 #define K_S 115
 #define K_D 100
 #define K_M 109
+#define K_E 101
+
 #define K_UP 65362
 #define K_DOWN 65364
 #define K_LEFT 65361
