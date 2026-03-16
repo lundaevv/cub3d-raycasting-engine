@@ -13,6 +13,24 @@
 #include "parser.h"
 #include "utils.h"
 
+static void	free_door_list(t_game *game_dt)
+{
+	t_door	*current;
+	t_door	*next;
+
+	current = game_dt->door_li.head;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	game_dt->door_li.head = NULL;
+	game_dt->door_li.tail = NULL;
+	game_dt->door_li.is_in_range = 0;
+	game_dt->door_li.is_inside = 0;
+}
+
 static void	free_parser_data(t_game *game_dt)
 {
 	free(game_dt->config.path_nw);
@@ -21,6 +39,7 @@ static void	free_parser_data(t_game *game_dt)
 	free(game_dt->config.path_ew);
 	free(game_dt->config.path_door_closed);
 	free_lines(game_dt->map.grid);
+	free_door_list(game_dt);
 }
 
 static void	reset_parser_data(t_game *game_dt)
