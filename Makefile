@@ -6,7 +6,7 @@
 #    By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 19:41:52 by vlundaev          #+#    #+#              #
-#    Updated: 2026/03/11 18:22:13 by vlundaev         ###   ########.fr        #
+#    Updated: 2026/03/16 15:42:45 by vlundaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRC_RENDER = \
 	src/render/minimap_map.c \
 	src/render/minimap_draw.c \
 	src/render/minimap_player.c \
+	src/render/show_menu_ui.c \
 	src/render/render.c
 
 SRC = main.c \

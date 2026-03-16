@@ -6,14 +6,12 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:56 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 18:27:05 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/16 16:14:19 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONFIG_H
 #define CONFIG_H
-
-#define PI 3.14159265358979323846
 
 #include "math.h"
 

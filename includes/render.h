@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 15:22:28 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 15:22:29 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:43:44 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void draw_map(t_game game_dt);
 void draw_door(t_game *game_dt, t_raycast_data ray_data, double wall_h,
                const int col_x);
 
-void show_menu_ui(t_game *game_dt);
+void show_menu_ui(t_game *game_dt, t_err *error);
 int show_ingame_ui(void);
 
 // Uttility functions for drawing pixels and blitting images

@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:37 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 18:11:47 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:38:30 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 double	get_time_sec(void);
 t_cell	get_cell_type(t_game game_dt, int x, int y);
 
-void	init_game(t_game *game_dt, t_err *error, int argc, char **argv);
+void	init_game(t_game *game_dt, t_err *error);
 void	init_graphics(t_game *game_dt, t_err *error);
 void	destroy(t_game *game_dt);
 void	free_graphics_data(t_game *g);
-void	validate_args(t_err *error, int argc, char **argv);
+void	validate_arg(t_game *game_dt, t_err *error, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:30:52 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/16 13:00:44 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:47:03 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,15 @@ int	main(int argc, char **argv)
 
 	if (argc > 2)
 		return print_errno(ERR_ARGS);
-	init_game(&game_dt, &error, argc, argv); //includes mlx_init_base
+	init_game(&game_dt, &error);
 	if (!error && argc == 1)
-		menu(&game_dt, &error);
-	validate_arg(&game_dt.map_path, &error); //current validate_args() but modified 
+		show_menu_ui(&game_dt, &error);
+	if (!error && argc != 1)
+		validate_arg(&game_dt, &error, argv);
 	if (!error)
 		parse(&game_dt, &error);
 	if (!error)
-		init_graphics(&game_dt, &error); //delete mlx_init_base part
+		init_graphics(&game_dt, &error);
 	if (!error)
 		render(&game_dt);
 	destroy(&game_dt);

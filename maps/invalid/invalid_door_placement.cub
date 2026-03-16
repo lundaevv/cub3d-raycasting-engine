@@ -2,14 +2,13 @@ NO textures/walls/greystone.xpm
 SO textures/walls/redbrick.xpm
 WE textures/walls/purplestone.xpm
 EA textures/walls/wood.xpm
-DC textures/walls/wood.xpm
-DO textures/walls/grass.xpm
+D textures/doors/door.xpm
 F 220,100,0
 C 120,120,255
 
 111111111
 100000001
-100D00001
+1000D0001
+1000N0001
 100000001
 111111111
-10N0001

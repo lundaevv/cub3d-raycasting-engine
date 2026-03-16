@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 18:08:32 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 18:13:34 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/16 16:00:26 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	free_parser_data(t_game *game_dt)
 	free(game_dt->config.path_door_closed);
 	free_lines(game_dt->map.grid);
 	free_door_list(game_dt);
+	if (game_dt->is_menu)
+		free(game_dt->map_path);
 }
 
 static void	reset_parser_data(t_game *game_dt)
