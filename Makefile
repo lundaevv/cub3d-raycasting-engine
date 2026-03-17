@@ -32,7 +32,10 @@ SRC_UTILS = \
 	src/utils/get_cell_type.c \
 	src/utils/get_time_sec.c \
 	src/utils/destroy.c \
-	src/utils/destroy_graphics.c
+	src/utils/destroy_graphics.c \
+	src/utils/draw_text_utils/bitmaps.c \
+	src/utils/draw_text_utils/draw_text_utils.c \
+	src/utils/draw_text.c \
 
 SRC_ERRORS = \
 	src/errors/print_msg.c \
@@ -65,6 +68,7 @@ SRC_INTERACTION = \
 	src/interaction/door.c
 
 SRC_RENDER = \
+	src/render/show_menu_ui.c \
 	src/render/raycast.c \
 	src/render/get_texture_x.c \
 	src/render/draw_door.c \

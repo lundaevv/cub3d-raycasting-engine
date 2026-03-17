@@ -15,6 +15,7 @@
 
 #include "../mlx/mlx.h"
 #include "config.h"
+#include "errors.h"
 #include "interaction.h"
 #include "minimap.h"
 #include "types.h"
@@ -26,8 +27,7 @@ void draw_map(t_game game_dt);
 void draw_door(t_game *game_dt, t_raycast_data ray_data, double wall_h,
                const int col_x);
 
-void show_menu_ui(t_game *game_dt);
-int show_ingame_ui(void);
+void show_menu_ui(t_game *game_dt, t_err *err);
 
 // Uttility functions for drawing pixels and blitting images
 void putp(t_img *im, int x, int y, unsigned int c);

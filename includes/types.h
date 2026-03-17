@@ -15,6 +15,12 @@
 
 #include <stdint.h>
 
+// NOTE: needed for storing bitmaps for render_text function
+typedef struct s_glyph {
+  char c;
+  unsigned char rows[7];
+} t_glyph;
+
 typedef struct s_vec {
   double x;
   double y;
