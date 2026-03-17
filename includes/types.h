@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:41 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 15:29:40 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/16 15:57:49 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ typedef struct s_game {
   t_player player;     /* player position and camera */
   t_door_list door_li; /* structure to store data about door*/
   t_input inp;         /* currently pressed buttons */
+  short int	is_menu;
 } t_game;
 
 #endif

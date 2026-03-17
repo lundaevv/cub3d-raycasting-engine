@@ -1,7 +1,7 @@
 #include "render.h"
 #include "utils.h"
 
-static void draw_block(t_img *img, t_txt_dt *txt_dt) {
+static void draw_block(t_img *img, int x, int y, t_txt_dt *txt_dt) {
   int dx;
   int dy;
 
@@ -9,7 +9,7 @@ static void draw_block(t_img *img, t_txt_dt *txt_dt) {
   while (dy < txt_dt->scale) {
     dx = 0;
     while (dx < txt_dt->scale) {
-      putp(img, txt_dt->x + dx, txt_dt->y + dy, txt_dt->color);
+      putp(img, x + dx, y + dy, txt_dt->color);
       dx++;
     }
     dy++;
@@ -51,7 +51,8 @@ void draw_char(t_img *img, char c, t_txt_dt *txt_dt) {
     col = 0;
     while (col < 5) {
       if ((g->rows[row] >> (4 - col)) & 1)
-        draw_block(img, txt_dt);
+        draw_block(img, txt_dt->x + (col * txt_dt->scale),
+                   txt_dt->y + (row * txt_dt->scale), txt_dt);
       col++;
     }
     row++;

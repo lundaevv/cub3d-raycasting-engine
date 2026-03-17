@@ -52,7 +52,7 @@ void draw_text(t_img *img, const char *str, t_txt_dt txt_dt) {
       txt_dt.x += 4 * 6 * txt_dt.scale;
     else {
       draw_char(img, *str, &txt_dt);
-      txt_dt.y += 6 * txt_dt.scale;
+      txt_dt.x += 6 * txt_dt.scale;
     }
     str++;
   }

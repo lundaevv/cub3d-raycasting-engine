@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 16:23:27 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 15:12:03 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/16 16:14:42 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static void	rotate_from_mouse(t_game *game_dt, int x)
 	if (delta >= -1 && delta <= 1)
 		return ;
 	game_dt->player.angle += delta * 0.002;
-	if (game_dt->player.angle >= 2 * PI)
-		game_dt->player.angle -= 2 * PI;
+	if (game_dt->player.angle >= 2 * M_PI)
+		game_dt->player.angle -= 2 * M_PI;
 	if (game_dt->player.angle < 0)
-		game_dt->player.angle += 2 * PI;
+		game_dt->player.angle += 2 * M_PI;
 }
 
 int	on_mouse_move(int x, int y, void *param)

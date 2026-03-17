@@ -1288,6 +1288,66 @@
     "output": "obj/src/utils/destroy_graphics.o"
   },
   {
+    "file": "src/utils/draw_text_utils/bitmaps.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/utils/draw_text_utils/bitmaps.c",
+      "-o",
+      "obj/src/utils/draw_text_utils/bitmaps.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/utils/draw_text_utils/bitmaps.o"
+  },
+  {
+    "file": "src/utils/draw_text_utils/draw_text_utils.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/utils/draw_text_utils/draw_text_utils.c",
+      "-o",
+      "obj/src/utils/draw_text_utils/draw_text_utils.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/utils/draw_text_utils/draw_text_utils.o"
+  },
+  {
+    "file": "src/utils/draw_text.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/utils/draw_text.c",
+      "-o",
+      "obj/src/utils/draw_text.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/utils/draw_text.o"
+  },
+  {
     "file": "src/errors/print_msg.c",
     "arguments": [
       "cc",
@@ -1746,6 +1806,46 @@
     ],
     "directory": "/home/dev/Work/cub3D",
     "output": "obj/src/interaction/on_mouse_move.o"
+  },
+  {
+    "file": "src/interaction/door.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/interaction/door.c",
+      "-o",
+      "obj/src/interaction/door.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/interaction/door.o"
+  },
+  {
+    "file": "src/render/show_menu_ui.c",
+    "arguments": [
+      "cc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-g",
+      "-std=gnu11",
+      "-Iincludes",
+      "-Ilibft/includes",
+      "-Imlx",
+      "-c",
+      "src/render/show_menu_ui.c",
+      "-o",
+      "obj/src/render/show_menu_ui.o"
+    ],
+    "directory": "/home/dev/Work/cub3D",
+    "output": "obj/src/render/show_menu_ui.o"
   },
   {
     "file": "src/render/raycast.c",
