@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:53 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 15:10:34 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/17 14:25:32 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,6 @@
 # define ERRMSG_FILE_EMPTY "file is empty"
 # define ERRMSG_CONF_ID "invalid config identifier"
 
-/*
-	ERR_OK = 0,
-	ERR_ARGS,			invalid arguments (argc, argv)
-	ERR_EXT,			invalid file extension
-	ERR_OPEN,			cannot open file (fopen)
-	ERR_READ,			read failed (fread, getline)
-	ERR_MEM,			out of memory (malloc)
-	ERR_CONF_DUP,		duplicate config (e.g. multiple floor colors)
-	ERR_CONF_MISS,		missing config (e.g. no ceiling color)
-	ERR	DOOR_CONF_MISS,	door config missing (map has doors but no door textures)
-	ERR_CONF_PATH,		invalid texture path (file not found or not readable)
-	ERR_CONF_COLOR,		invalid color (e.g. non-numeric, out of range)
-	ERR_MAP_EMPTY,		map missing (no lines read)
-	ERR_MAP_CHAR,		invalid map char (not in " 012NSEW")
-	ERR_MAP_DOOR,		invalid door placement (not between walls)
-	ERR_MAP_PLAYER,		invalid player count (not exactly 1)
-	ERR_MAP_GAP,		empty line inside map
-	ERR_MAP_TRAIL,		empty line after map (trailing empty lines)
-	ERR_MAP_OPEN,		map not closed/surrounded by walls
-	ERR_PARSE			generic parse error (e.g. unexpected line format)
-	ERR_MLX_INIT,		mlx init failed (e.g. mlx_init returned NULL)
-	ERR_NULL_PTR		null pointer passed to function (e.g. game_dt or error)
-	ERR_FILE_BLANK		no usable lines read from file (e.g. only empty lines)
-	ERR	FILE_EMPTY		file is empty (0 lines read)
-	ERR_CONF_ID			invalid config identifier (line starts with unknown ID)
-*/
 typedef enum e_err
 {
 	ERR_OK = 0,

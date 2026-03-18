@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:31:40 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/16 15:32:05 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/17 14:19:56 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	init_game(t_game *game_dt, t_err *error)
 {
 	*game_dt = (t_game){0};
 	*error = ERR_OK;
-
 	if (!init_mlx_core(game_dt) || !init_frame(game_dt))
 	{
 		*error = ERR_MLX_INIT;

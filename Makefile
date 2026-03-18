@@ -6,7 +6,7 @@
 #    By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 19:41:52 by vlundaev          #+#    #+#              #
-#    Updated: 2026/03/16 15:42:45 by vlundaev         ###   ########.fr        #
+#    Updated: 2026/03/18 11:54:24 by vlundaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,6 @@ SRC_RENDER = \
 	src/render/minimap_map.c \
 	src/render/minimap_draw.c \
 	src/render/minimap_player.c \
-	src/render/show_menu_ui.c \
 	src/render/render.c
 
 SRC = main.c \
@@ -85,10 +84,6 @@ SRC = main.c \
 	$(SRC_RENDER)
 
 OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
-
-VALID_MAPS = $(wildcard maps/valid/*.cub)
-INVALID_MAPS = $(wildcard maps/invalid/*.cub)
-TEST_TIMEOUT = 1
 
 all: $(NAME)
 

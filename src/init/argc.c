@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:31:43 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/16 15:47:09 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/17 14:22:21 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	validate_arg(t_game *game_dt, t_err *error, char **argv)
 {
 	if (!has_cube_extension(argv[1]))
 		*error = ERR_EXT;
-	game_dt->map_path = argv[1];	
+	game_dt->map_path = argv[1];
 }

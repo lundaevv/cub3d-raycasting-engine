@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 15:32:47 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 15:11:14 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/18 12:18:15 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*get_config_value(char *line);
 /* parse_config_store.c */
 int		store_config_value(char *line, int id, t_game *game_dt, t_err *error);
 
-/* parse_color.c */
+/* parse_config_color.c */
 int		parse_rgb_color(char *value, int *out_color);
 
 /* parse_utils.c */
