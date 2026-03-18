@@ -6,7 +6,7 @@
 #    By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/03 19:41:52 by vlundaev          #+#    #+#              #
-#    Updated: 2026/03/11 18:22:13 by vlundaev         ###   ########.fr        #
+#    Updated: 2026/03/18 11:54:24 by vlundaev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,11 +61,13 @@ SRC_INTERACTION = \
 	src/interaction/on_key_actions.c \
 	src/interaction/move_player.c \
 	src/interaction/rotate_player.c \
-	src/interaction/on_mouse_move.c
+	src/interaction/on_mouse_move.c \
+	src/interaction/door.c
 
 SRC_RENDER = \
 	src/render/raycast.c \
 	src/render/get_texture_x.c \
+	src/render/draw_door.c \
 	src/render/draw_map.c \
 	src/render/render_utils.c \
 	src/render/minimap_map.c \
@@ -82,10 +84,6 @@ SRC = main.c \
 	$(SRC_RENDER)
 
 OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
-
-VALID_MAPS = $(wildcard maps/valid/*.cub)
-INVALID_MAPS = $(wildcard maps/invalid/*.cub)
-TEST_TIMEOUT = 1
 
 all: $(NAME)
 

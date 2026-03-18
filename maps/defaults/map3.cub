@@ -1,0 +1,15 @@
+NO textures/walls/wall_N.xpm
+SO textures/walls/wall_S.xpm
+WE textures/walls/wall_W.xpm
+EA textures/walls/wall_E.xpm
+D textures/doors/door.xpm
+F 100,100,100
+C 180,180,210
+
+111111111
+100000001
+101111101
+1D1000001
+101111101
+10000S001
+111111111

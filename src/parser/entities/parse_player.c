@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 18:24:48 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 15:16:31 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/16 16:15:31 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 static double	get_player_angle(char c)
 {
 	if (c == 'N')
-		return (3 * PI / 2);
+		return (3 * M_PI / 2);
 	if (c == 'S')
-		return (PI / 2);
+		return (M_PI / 2);
 	if (c == 'W')
-		return (PI);
+		return (M_PI);
 	return (0.0);
 }
 

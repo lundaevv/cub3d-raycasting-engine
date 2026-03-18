@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 15:18:26 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 18:17:02 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/17 14:18:20 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,23 @@ static int	is_collided(t_game game_dt, t_vec coords)
 }
 
 static t_vec	get_next_position(t_game *game_dt, double step,
-	double cos_val, double sin_val)
+		const double cos_val, const double sin_val)
 {
 	t_vec	new_pos;
 
 	new_pos = game_dt->player.pos;
 	if (game_dt->inp.w)
-		new_pos = (t_vec){new_pos.x + cos_val * step,
-			new_pos.y + sin_val * step};
+		new_pos = (t_vec){new_pos.x + cos_val * step, new_pos.y + sin_val
+			* step};
 	if (game_dt->inp.s)
-		new_pos = (t_vec){new_pos.x - cos_val * step,
-			new_pos.y - sin_val * step};
+		new_pos = (t_vec){new_pos.x - cos_val * step, new_pos.y - sin_val
+			* step};
+	if (game_dt->inp.a)
+		new_pos = (t_vec){new_pos.x + sin_val * step, new_pos.y - cos_val
+			* step};
+	if (game_dt->inp.d)
+		new_pos = (t_vec){new_pos.x - sin_val * step, new_pos.y + cos_val
+			* step};
 	return (new_pos);
 }
 
@@ -47,15 +53,11 @@ void	move_player(t_game *game_dt, double step)
 	t_vec			new_pos;
 	t_vec			new_pos_collision;
 
-	if (!game_dt->inp.w && !game_dt->inp.s)
+	if (!game_dt->inp.w && !game_dt->inp.s && !game_dt->inp.a
+		&& !game_dt->inp.d)
 		return ;
 	new_pos = get_next_position(game_dt, step, cos_val, sin_val);
-	if (game_dt->inp.w)
-		new_pos_collision = (t_vec){new_pos.x + cos_val * offset,
-			new_pos.y + sin_val * offset};
-	else
-		new_pos_collision = (t_vec){new_pos.x - cos_val * offset,
-			new_pos.y - sin_val * offset};
+	new_pos_collision = get_next_position(game_dt, offset, cos_val, sin_val);
 	if (is_collided(*game_dt, new_pos_collision) || is_collided(*game_dt,
 			new_pos))
 		return ;

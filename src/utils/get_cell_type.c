@@ -6,12 +6,13 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 15:30:05 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 15:30:06 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/17 14:22:38 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "types.h"
 #include "utils.h"
+#include <stdio.h>
 
 t_cell	get_cell_type(t_game game_dt, int x, int y)
 {

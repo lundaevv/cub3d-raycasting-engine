@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 15:20:21 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 17:48:27 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/18 11:55:08 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static int	on_close(void *param)
 	return (0);
 }
 
-// NOTE: draw_minimap
 static int	update(t_game *game_dt)
 {
 	const double	t = get_time_sec();
 	double			dt;
 	double			step;
 
+	game_dt->mlx.time = t;
 	dt = t - game_dt->inp.last_time;
 	step = dt * 40;
 	game_dt->inp.last_time = t;
@@ -36,6 +36,8 @@ static int	update(t_game *game_dt)
 		dt = 0.05;
 	move_player(game_dt, step);
 	rotate_player(game_dt, step * 0.1);
+	check_door_in_range(game_dt);
+	interact_door(game_dt);
 	draw_map(*game_dt);
 	draw_minimap(*game_dt);
 	mlx_put_image_to_window(game_dt->mlx.context, game_dt->mlx.win,
@@ -43,9 +45,6 @@ static int	update(t_game *game_dt)
 	return (0);
 }
 
-//	NOTE: on_mouse_move added to mlx_hook in render() 
-//	and mouse_on flag set to 1 to enable mouse movement tracking. 
-//	Mouse cursor is hidden with mlx_mouse_hide.
 void	render(t_game *game_dt)
 {
 	game_dt->inp.mouse_on = 1;

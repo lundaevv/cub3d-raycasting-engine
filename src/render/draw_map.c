@@ -6,15 +6,15 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 15:21:43 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 18:25:44 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/17 14:19:39 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "config.h"
 #include "render.h"
-#include "types.h"
 
-static void	draw_wall(t_game game_dt, t_raycast_data ray_data, double wall_h,
-		const int col_x)
+static void	draw_wall_column(t_game game_dt, t_raycast_data ray_data,
+		double wall_h, const int col_x)
 {
 	t_img	*tex;
 	int		draw_start;
@@ -34,8 +34,8 @@ static void	draw_wall(t_game game_dt, t_raycast_data ray_data, double wall_h,
 	tex_y = 0;
 	while (draw_start <= draw_end)
 	{
-		putp(&game_dt.mlx.frame, col_x, draw_start, getp((t_img *)tex,
-				ray_data.tex_x * tex->w, tex_y));
+		putp(&game_dt.mlx.frame, col_x, draw_start, getp(tex, ray_data.tex_x
+				* tex->w, tex_y));
 		tex_y += tex->h / wall_h;
 		draw_start++;
 	}
@@ -60,7 +60,7 @@ static void	draw_bg_column(t_game game_dt, int col_x, int top, int bottom)
 }
 
 static void	draw_column(t_game game_dt, double proj_plane,
-	t_raycast_data ray_data, const int col_x)
+		t_raycast_data ray_data, const int col_x)
 {
 	int		top;
 	int		bottom;
@@ -75,7 +75,10 @@ static void	draw_column(t_game game_dt, double proj_plane,
 	if (bottom >= game_dt.mlx.win_h)
 		bottom = game_dt.mlx.win_h - 1;
 	draw_bg_column(game_dt, col_x, top, bottom);
-	draw_wall(game_dt, ray_data, wall_h, col_x);
+	if (ray_data.cell_type == c_door)
+		draw_door(&game_dt, ray_data, wall_h, col_x);
+	else
+		draw_wall_column(game_dt, ray_data, wall_h, col_x);
 }
 
 static t_raycast_data	get_column_ray(t_game game_dt, double fov, int x)

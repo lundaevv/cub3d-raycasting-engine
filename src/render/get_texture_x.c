@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 15:20:38 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 15:21:13 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/18 12:28:10 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "render.h"
 #include "types.h"
 
-// Direction EAST, SOUTH, WEST, NORTH
 double	get_texture_x(t_game game_dt, t_raycast_data ray_data,
 		const double sin_val, const double cos_val)
 {

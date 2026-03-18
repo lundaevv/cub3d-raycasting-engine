@@ -6,12 +6,13 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 15:20:30 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 15:20:31 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/17 14:19:30 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "render.h"
 #include "types.h"
+#include "utils.h"
 
 static int	is_colided(t_game game_dt, t_vec coord)
 {
@@ -109,10 +110,12 @@ t_raycast_data	raycast(t_game game_dt, double angle)
 	len.y = cast_ver(game_dt, calc_sin, calc_cos, step);
 	len.x = cast_hor(game_dt, calc_sin, calc_cos, step);
 	if (len.y < len.x)
-		ray_data = (t_raycast_data){len.y, which_side(0, step), 0};
+		ray_data = (t_raycast_data){len.y, which_side(0, step), 0, c_unknown};
 	else
-		ray_data = (t_raycast_data){.len = len.x, .side = which_side(1, step),
-			0};
+		ray_data = (t_raycast_data){len.x, which_side(1, step), 0, c_unknown};
 	ray_data.tex_x = get_texture_x(game_dt, ray_data, calc_sin, calc_cos);
+	ray_data.cell_type = get_cell_type(game_dt, game_dt.player.pos.x
+			+ ray_data.len * calc_cos + (step.x * 0.0001), game_dt.player.pos.y
+			+ ray_data.len * calc_sin + (step.y * 0.0001));
 	return (ray_data);
 }

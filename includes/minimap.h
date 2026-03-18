@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 12:33:03 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 17:44:13 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/03/17 14:25:51 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 
 # include "types.h"
 
-/*
-off_x, off_y: minimap top-left corner offset from window edge
-tile: minimap tile size in pixels
-rows, cols: number of rows and columns to render in minimap
-*/
 typedef struct s_minimap
 {
 	int		off_x;
