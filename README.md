@@ -1,19 +1,39 @@
-# cub3D
+# Cub3D — Raycasting Engine
 
-A small Wolfenstein-style raycaster built for the 42 `cub3D` project.
+A 3D raycasting engine in C inspired by Wolfenstein 3D.
 
-The project currently includes:
-- `.cub` parsing for textures, colors, player spawn, and doors
-- map validation for invalid characters, duplicate or missing config fields, open maps, and bad door placement
-- wall and door rendering with MiniLibX
-- keyboard movement, mouse look toggle, and a minimap
+## 🧠 Overview
 
-## Team
+Cub3D is a real-time rendering engine that simulates a 3D environment using raycasting techniques.  
+It focuses on graphics programming, mathematical transformations, and real-time rendering performance.
 
-- Vitalii - [github.com/lundaevv](https://github.com/lundaevv)
-- Artem - [github.com/a-kuchmambetov](https://github.com/a-kuchmambetov)
+## 🎬 Demo
 
-## Build
+![Demo](./assets/demo.gif)
+
+## 🎮 Features
+
+- `.cub` parsing (textures, colors, player spawn, doors)
+- Robust map validation (invalid characters, duplicates, open maps, door placement)
+- Real-time wall and door rendering (MiniLibX)
+- Player movement, rotation, mouse look, and minimap
+
+## 🛠 Tech Stack
+
+- C
+- MiniLibX
+- Raycasting algorithm
+- Trigonometry and linear algebra
+
+## 🏗 Architecture
+
+- **Parser** — reads `.cub` files and validates map/config  
+- **Raycasting Engine** — casts rays and computes wall distances  
+- **Renderer** — draws walls, textures, and minimap  
+- **Input System** — handles movement, rotation, and interaction
+- **Game Loop** — handles frame updates and rendering cycle
+
+## ⚙️ Build
 
 This project builds on both Linux and macOS.
 
@@ -25,8 +45,9 @@ make
 ```
 
 Notes:
+
 - `libft/` must be present locally
-- if `mlx/` is missing, the Makefile clones the correct MiniLibX repo automatically for your platform
+- if `mlx/` is missing, the Makefile clones the correct MiniLibX repo automatically
 - on macOS the build also copies `libmlx.dylib` next to the executable
 
 Useful targets:
@@ -40,22 +61,7 @@ make mlxDel
 make allClean
 ```
 
-## Norminette Notes
-
-This project is kept compatible with `norminette`, so some implementation choices are intentionally shaped by 42 style constraints.
-
-Common examples:
-- functions should stay short, so logic is often split into small helpers instead of one long function
-- files should not contain too many functions, so related logic may be distributed across multiple source files
-- variable counts inside functions are limited, so temporary values are sometimes moved into helper functions
-- preprocessor directives such as `#ifdef` should stay at global scope, so platform-specific behavior is wrapped in dedicated compatibility files instead of being embedded deep inside regular `.c` functions
-
-Examples from this repository:
-- MiniLibX platform differences are isolated in `src/utils/mlx_*_compat_*.c`
-- minimap overlay logic is split across multiple render files instead of one large render function
-- small rendering and parsing helpers are separated to keep function length and variable count within norm limits
-
-## Run
+## ▶️ Run
 
 Recommended demo map:
 
@@ -74,13 +80,7 @@ More sample maps are available under:
 - `maps/invalid/`
 - `maps/defaults/`
 
-The large demo map is useful for screenshots or GIF recording:
-- sky-colored ceiling
-- grass-colored floor
-- spawn near a door
-- enough surrounding space that the minimap does not immediately show outer borders
-
-## Controls
+## 🎮 Controls
 
 - `W` / `S`: move forward and backward
 - `A` / `D`: strafe left and right
@@ -95,7 +95,7 @@ Notes:
 - press `M` to enable mouse capture
 - press `M` again to disable it
 
-## Map Format
+## 🗺 Map Format
 
 A valid `.cub` file contains:
 - four wall textures: `NO`, `SO`, `WE`, `EA`
@@ -126,7 +126,7 @@ Validation rules enforced by the parser include:
 - walkable tiles must not touch the map border or padded void
 - doors must sit between walls on one axis and walkable tiles on the other axis
 
-## Project Layout
+## 📁 Project Structure
 
 - `src/parser/`: file loading, config parsing, map normalization, and validation
 - `src/render/`: raycasting, wall and door drawing, minimap rendering
@@ -135,6 +135,11 @@ Validation rules enforced by the parser include:
 - `includes/`: shared headers
 - `textures/`: wall and door assets
 
-## Current Status
+## 📌 Status
 
-The repository is organized around a playable build for both Linux and macOS, with parser, rendering, minimap, doors, mouse toggle, and demo maps already integrated.
+Playable build for Linux and macOS with parser, rendering, minimap, doors, and input fully implemented.
+
+## 🧑‍💻 Authors
+
+- Vitali - [github.com/lundaevv](https://github.com/lundaevv)
+- Artem - [github.com/a-kuchmambetov](https://github.com/a-kuchmambetov)
