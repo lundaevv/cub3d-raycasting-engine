@@ -11,17 +11,11 @@
 /* ************************************************************************** */
 
 #include "mlx.h"
+#include "minimap.h"
 #include "utils.h"
 
-static int	init_mlx_core(t_game *game_dt)
+static int	init_window(t_game *game_dt, int sw, int sh)
 {
-	int	sw;
-	int	sh;
-
-	game_dt->mlx.context = mlx_init();
-	if (!game_dt->mlx.context)
-		return (0);
-	mlx_get_screen_size(game_dt->mlx.context, &sw, &sh);
 	game_dt->mlx.win_w = (sw * 3) / 4;
 	game_dt->mlx.win_h = (sh * 3) / 4;
 	if (game_dt->mlx.win_w < 640)
@@ -37,27 +31,48 @@ static int	init_mlx_core(t_game *game_dt)
 	return (game_dt->mlx.win != NULL);
 }
 
-static int	init_frame(t_game *game_dt)
+static int	init_mlx_core(t_game *game_dt)
 {
-	game_dt->mlx.frame.img = mlx_new_image(game_dt->mlx.context,
-			game_dt->mlx.win_w, game_dt->mlx.win_h);
-	if (!game_dt->mlx.frame.img)
+	int	sw;
+	int	sh;
+
+	game_dt->mlx.context = mlx_init();
+	if (!game_dt->mlx.context)
 		return (0);
-	game_dt->mlx.frame.a = mlx_get_data_addr(game_dt->mlx.frame.img,
-			&game_dt->mlx.frame.bpp, &game_dt->mlx.frame.ll,
-			&game_dt->mlx.frame.e);
-	if (!game_dt->mlx.frame.a)
+	mlx_get_screen_size_safe(game_dt->mlx.context, &sw, &sh);
+	return (init_window(game_dt, sw, sh));
+}
+
+static int	init_img(t_game *game_dt, t_img *img, int w, int h)
+{
+	img->img = mlx_new_image(game_dt->mlx.context, w, h);
+	if (!img->img)
 		return (0);
-	game_dt->mlx.frame.w = game_dt->mlx.win_w;
-	game_dt->mlx.frame.h = game_dt->mlx.win_h;
+	img->a = mlx_get_data_addr(img->img, &img->bpp, &img->ll, &img->e);
+	if (!img->a)
+		return (0);
+	img->w = w;
+	img->h = h;
 	return (1);
+}
+
+static int	init_frame_and_minimap(t_game *game_dt)
+{
+	t_minimap	mm;
+
+	if (!init_img(game_dt, &game_dt->mlx.frame, game_dt->mlx.win_w,
+			game_dt->mlx.win_h))
+		return (0);
+	mm = get_minimap_cfg();
+	return (init_img(game_dt, &game_dt->mlx.minimap, mm.cols * mm.tile + 4,
+			mm.rows * mm.tile + 4));
 }
 
 void	init_game(t_game *game_dt, t_err *error)
 {
 	*game_dt = (t_game){0};
 	*error = ERR_OK;
-	if (!init_mlx_core(game_dt) || !init_frame(game_dt))
+	if (!init_mlx_core(game_dt) || !init_frame_and_minimap(game_dt))
 	{
 		*error = ERR_MLX_INIT;
 		return ;

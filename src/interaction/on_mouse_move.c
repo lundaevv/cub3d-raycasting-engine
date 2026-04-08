@@ -16,8 +16,8 @@
 static void	center_mouse(t_game *game_dt)
 {
 	game_dt->inp.mouse_lock = 1;
-	mlx_mouse_move(game_dt->mlx.context, game_dt->mlx.win, game_dt->mlx.win_w
-		/ 2, game_dt->mlx.win_h / 2);
+	mlx_mouse_move_safe(game_dt->mlx.context, game_dt->mlx.win,
+		game_dt->mlx.win_w / 2, game_dt->mlx.win_h / 2);
 }
 
 static void	rotate_from_mouse(t_game *game_dt, int x)

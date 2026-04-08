@@ -13,6 +13,20 @@
 #include "minimap.h"
 #include "render.h"
 
+static int	is_door_pos(t_game game_dt, t_vec map)
+{
+	t_door	*door;
+
+	door = game_dt.door_li.head;
+	while (door)
+	{
+		if (door->map_pos.x == (int)map.x && door->map_pos.y == (int)map.y)
+			return (1);
+		door = door->next;
+	}
+	return (0);
+}
+
 static void	draw_minimap_panel(t_game game_dt, t_minimap mm)
 {
 	int	x;
@@ -39,6 +53,16 @@ static void	draw_minimap_panel(t_game game_dt, t_minimap mm)
 	}
 }
 
+static char	get_visible_tile(t_game game_dt, t_vec map)
+{
+	char	tile;
+
+	tile = game_dt.map.grid[(int)map.y][(int)map.x];
+	if (tile == '0' && is_door_pos(game_dt, map))
+		return ('D');
+	return (tile);
+}
+
 static void	draw_visible_tiles(t_game game_dt, t_minimap mm, t_vec start)
 {
 	t_vec	map;
@@ -56,8 +80,12 @@ static void	draw_visible_tiles(t_game game_dt, t_minimap mm, t_vec start)
 				&& map.y < game_dt.map.rows)
 				draw_minimap_tile(game_dt, mm, (t_vec){
 					mm.off_x + view.x * mm.tile,
-					mm.off_y + view.y * mm.tile},
-					game_dt.map.grid[(int)map.y][(int)map.x]);
+					mm.off_y + view.y * mm.tile}, get_visible_tile(game_dt,
+						map));
+			else
+				draw_minimap_tile(game_dt, mm, (t_vec){
+					mm.off_x + view.x * mm.tile,
+					mm.off_y + view.y * mm.tile}, ' ');
 			view.x++;
 		}
 		view.y++;
@@ -75,4 +103,5 @@ void	draw_minimap(t_game game_dt)
 	start.y = (int)(game_dt.player.pos.y / TILE_SIZE) - mm.rows / 2;
 	draw_visible_tiles(game_dt, mm, start);
 	draw_minimap_player(game_dt, mm);
+	draw_minimap_doors(game_dt, mm, start);
 }

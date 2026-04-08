@@ -15,7 +15,10 @@ The project currently includes:
 
 ## Build
 
-This project is set up for Linux with X11 MiniLibX.
+This project builds on both Linux and macOS.
+
+- Linux: uses `minilibx-linux`
+- macOS: uses a Metal-based MiniLibX fork
 
 ```sh
 make
@@ -23,7 +26,8 @@ make
 
 Notes:
 - `libft/` must be present locally
-- if `mlx/` is missing, the Makefile clones `minilibx-linux` automatically before building
+- if `mlx/` is missing, the Makefile clones the correct MiniLibX repo automatically for your platform
+- on macOS the build also copies `libmlx.dylib` next to the executable
 
 Useful targets:
 
@@ -36,16 +40,45 @@ make mlxDel
 make allClean
 ```
 
+## Norminette Notes
+
+This project is kept compatible with `norminette`, so some implementation choices are intentionally shaped by 42 style constraints.
+
+Common examples:
+- functions should stay short, so logic is often split into small helpers instead of one long function
+- files should not contain too many functions, so related logic may be distributed across multiple source files
+- variable counts inside functions are limited, so temporary values are sometimes moved into helper functions
+- preprocessor directives such as `#ifdef` should stay at global scope, so platform-specific behavior is wrapped in dedicated compatibility files instead of being embedded deep inside regular `.c` functions
+
+Examples from this repository:
+- MiniLibX platform differences are isolated in `src/utils/mlx_*_compat_*.c`
+- minimap overlay logic is split across multiple render files instead of one large render function
+- small rendering and parsing helpers are separated to keep function length and variable count within norm limits
+
 ## Run
 
+Recommended demo map:
+
 ```sh
-./cub3D maps/valid/valid_basic.cub
+./cub3D maps/defaults/demo_gif_large.cub
+```
+
+Default sample map set:
+
+```sh
+./cub3D maps/defaults/default_basic.cub
 ```
 
 More sample maps are available under:
 - `maps/valid/`
 - `maps/invalid/`
 - `maps/defaults/`
+
+The large demo map is useful for screenshots or GIF recording:
+- sky-colored ceiling
+- grass-colored floor
+- spawn near a door
+- enough surrounding space that the minimap does not immediately show outer borders
 
 ## Controls
 
@@ -56,6 +89,11 @@ More sample maps are available under:
 - `E`: interact with a door
 - `M`: toggle mouse capture
 - `Esc`: quit
+
+Notes:
+- mouse look is disabled by default on startup
+- press `M` to enable mouse capture
+- press `M` again to disable it
 
 ## Map Format
 
@@ -99,4 +137,4 @@ Validation rules enforced by the parser include:
 
 ## Current Status
 
-The repository is organized around a playable Linux build with parser, rendering, minimap, and door support already integrated.
+The repository is organized around a playable build for both Linux and macOS, with parser, rendering, minimap, doors, mouse toggle, and demo maps already integrated.

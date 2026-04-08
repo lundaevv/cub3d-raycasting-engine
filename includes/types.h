@@ -128,6 +128,7 @@ typedef struct s_mlx
 	void			*context;
 	void			*win;
 	t_img			frame;
+	t_img			minimap;
 	int				win_w;
 	int				win_h;
 	double			time;

@@ -66,3 +66,12 @@ void	destroy(t_game *game_dt)
 	free_parser_data(game_dt);
 	reset_parser_data(game_dt);
 }
+
+void	quit_game(t_game *game_dt, int code)
+{
+	if (MLX_USE_MINIMAP_OVERLAY)
+		(void)game_dt;
+	else
+		destroy(game_dt);
+	exit_platform(code);
+}

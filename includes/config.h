@@ -31,9 +31,9 @@
 // Player textures
 # define TEXTURE_PLAYER_IDLE "textures/player/idle.xpm"
 
+# ifndef __APPLE__
+
 // Linux (X11) keycodes
-# define LINUX
-# ifdef LINUX
 
 #  define KEY_PRESS 2
 #  define KEY_RELEASE 3
@@ -60,11 +60,21 @@
 # else
 
 // macOS (Cocoa, 42's MiniLibX) keycodes
+#  define KEY_PRESS 2
+#  define KEY_RELEASE 3
+#  define DESTROY_NOTIFY 17
+#  define KEY_PRESS_MASK 0L
+#  define KEY_RELEASE_MASK 0L
+#  define MOTION_NOTIFY 6
+#  define POINTER_MOTION_MASK 0L
+
 #  define K_ESC 53
 #  define K_W 13
 #  define K_A 0
 #  define K_S 1
 #  define K_D 2
+#  define K_M 46
+#  define K_E 14
 #  define K_UP 126
 #  define K_DOWN 125
 #  define K_LEFT 123

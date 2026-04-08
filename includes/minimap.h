@@ -28,6 +28,7 @@ t_minimap	get_minimap_cfg(void);
 void		draw_minimap(t_game game_dt);
 void		draw_minimap_tile(t_game game_dt, t_minimap mm, t_vec pos,
 				char tile);
+void		draw_minimap_doors(t_game game_dt, t_minimap mm, t_vec start);
 void		draw_minimap_player(t_game game_dt, t_minimap mm);
 
 #endif

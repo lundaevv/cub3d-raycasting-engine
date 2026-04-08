@@ -12,14 +12,31 @@
 
 NAME = cub3D
 
+UNAME_S := $(shell uname -s)
+MAKEFLAGS += --no-print-directory
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -std=gnu11 -Iincludes -Ilibft/includes -Imlx
-LIBFLAGS = -Lmlx -lmlx -lXext -lX11 -lm
+RM = rm -f
+RMDIR = rm -rf
 
 LIBFTDIR = libft
 LIBFT = $(LIBFTDIR)/libft.a
 MLXDIR = mlx
+MLX_LOG = .mlx_build.log
+
+ifeq ($(UNAME_S),Darwin)
+MLX_REPO = https://github.com/alternateash/minilibx_macos_metal_backup.git
+MLX = $(MLXDIR)/libmlx.dylib
+LIBFLAGS = -Lmlx -lmlx -framework Metal -framework AppKit -framework OpenGL -lm \
+	-Wl,-rpath,@loader_path -Wl,-rpath,@loader_path/$(MLXDIR)
+MLX_COPY = cp $(MLX) ./libmlx.dylib
+else
+MLX_REPO = https://github.com/42paris/minilibx-linux.git
 MLX = $(MLXDIR)/libmlx.a
+LIBFLAGS = -Lmlx -lmlx -lXext -lX11 -lm
+MLX_COPY = true
+endif
 
 OBJDIR = obj
 
@@ -31,6 +48,10 @@ SRC_INIT = \
 SRC_UTILS = \
 	src/utils/get_cell_type.c \
 	src/utils/get_time_sec.c \
+	src/utils/mlx_mouse_compat_apple.c \
+	src/utils/mlx_mouse_compat_linux.c \
+	src/utils/mlx_platform_compat_apple.c \
+	src/utils/mlx_platform_compat_linux.c \
 	src/utils/destroy.c \
 	src/utils/destroy_graphics.c
 
@@ -69,6 +90,7 @@ SRC_RENDER = \
 	src/render/get_texture_x.c \
 	src/render/draw_door.c \
 	src/render/draw_map.c \
+	src/render/render_overlay.c \
 	src/render/render_utils.c \
 	src/render/minimap_map.c \
 	src/render/minimap_draw.c \
@@ -88,38 +110,60 @@ OBJS = $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 all: $(NAME)
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFTDIR)
+	@printf "[LIBFT] building libft\n"
+	@$(MAKE) -C $(LIBFTDIR)
 
 $(MLX):
 	@{ \
-		if [ ! -f "$(MLX)" ]; then echo "libmlx.a missing -> recloning"; \
-			rm -rf "$(MLXDIR)"; \
-			git clone https://github.com/42paris/minilibx-linux.git "$(MLXDIR)"; \
-			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/Makefile.gen; \
-			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/test/Makefile.gen; \
-			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/Makefile.mk; \
-			sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/test/Makefile.mk; \
+		if [ ! -f "$(MLX)" ]; then \
+			printf "[MLX]   missing -> cloning\n"; \
+			$(RMDIR) "$(MLXDIR)"; \
+			git clone --quiet "$(MLX_REPO)" "$(MLXDIR)"; \
+			if [ "$(UNAME_S)" = "Linux" ]; then \
+				sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/Makefile.gen; \
+				sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/test/Makefile.gen; \
+				sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/Makefile.mk; \
+				sed -i '/^CFLAGS[[:space:]]*=/a\CFLAGS+=-std=gnu11' $(MLXDIR)/test/Makefile.mk; \
+			fi; \
 		fi; \
-		$(MAKE) -C "$(MLXDIR)"; \
+		printf "[MLX]   building mlx\n"; \
+		if ! $(MAKE) -C "$(MLXDIR)" >"$(MLX_LOG)" 2>&1; then \
+			cat "$(MLX_LOG)"; \
+			$(RM) "$(MLX_LOG)"; \
+			exit 1; \
+		fi; \
+		$(RM) "$(MLX_LOG)"; \
 	}
 
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@printf "[CC]    %s\n" "$<"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(MLX) $(LIBFT) $(OBJS)
-	$(CC) $(OBJS) $(CFLAGS) $(LIBFLAGS) $(MLX) $(LIBFT) -o $(NAME)
+	@printf "[LD]    %s\n" "$(NAME)"
+	@$(CC) $(OBJS) $(CFLAGS) $(LIBFLAGS) $(MLX) $(LIBFT) -o $(NAME)
+	@printf "[CP]    runtime mlx\n"
+	@$(MLX_COPY)
+	@printf "[OK]    build complete -> %s\n" "$(NAME)"
 
 clean:
-	rm -rf $(OBJDIR)
-	$(MAKE) -C $(LIBFTDIR) clean
+	@printf "[RM]    %s\n" "$(OBJDIR)"
+	@$(RMDIR) $(OBJDIR)
+	@printf "[LIBFT] clean\n"
+	@$(MAKE) -C $(LIBFTDIR) clean
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C $(LIBFTDIR) fclean
+	@printf "[RM]    %s\n" "$(NAME)"
+	@$(RM) $(NAME)
+	@printf "[RM]    %s\n" "libmlx.dylib"
+	@$(RM) libmlx.dylib
+	@printf "[LIBFT] fclean\n"
+	@$(MAKE) -C $(LIBFTDIR) fclean
 
 mlxDel:
-	rm -rf $(MLXDIR)
+	@printf "[RM]    %s\n" "$(MLXDIR)"
+	@$(RMDIR) $(MLXDIR)
 
 allClean: fclean mlxDel
 

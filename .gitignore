@@ -3,6 +3,7 @@
 
 # Libraries
 *.a
+*.dylib
 mlx
 mlx/*
 
@@ -21,20 +22,21 @@ build/
 *.gch
 *.dSYM/
 vgcore.*
+.mlx_build.log
 
 # macOS / system junk
 .DS_Store
 *.swp
 *.tmp
 
-#vsCode setings
+# Editor settings
 .vscode/
 
-# Valgrindp
+# Valgrind
 *.supp
 
-# Tests
+# Test artifacts
 *.txt
 
-#Cache
+# Cache
 .cache

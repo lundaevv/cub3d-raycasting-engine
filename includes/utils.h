@@ -15,6 +15,7 @@
 
 # include "config.h"
 # include "errors.h"
+# include "mlx_compat.h"
 # include "types.h"
 # include <stdbool.h>
 # include <stdint.h>
@@ -27,6 +28,7 @@ t_cell	get_cell_type(t_game game_dt, int x, int y);
 void	init_game(t_game *game_dt, t_err *error);
 void	init_graphics(t_game *game_dt, t_err *error);
 void	destroy(t_game *game_dt);
+void	quit_game(t_game *game_dt, int code);
 void	free_graphics_data(t_game *g);
 void	validate_arg(t_game *game_dt, t_err *error, char **argv);
 

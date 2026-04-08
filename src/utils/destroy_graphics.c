@@ -6,7 +6,7 @@
 /*   By: vlundaev <vlundaev@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/11 18:09:57 by vlundaev          #+#    #+#             */
-/*   Updated: 2026/03/11 18:13:03 by vlundaev         ###   ########.fr       */
+/*   Updated: 2026/04/08 17:25:02 by vlundaev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ static void	destroy_frame(t_game *g)
 		mlx_destroy_image(g->mlx.context, g->mlx.frame.img);
 		g->mlx.frame.img = NULL;
 		g->mlx.frame.a = NULL;
+	}
+	if (g->mlx.minimap.img)
+	{
+		mlx_destroy_image(g->mlx.context, g->mlx.minimap.img);
+		g->mlx.minimap.img = NULL;
+		g->mlx.minimap.a = NULL;
 	}
 }
 
@@ -48,8 +54,7 @@ static void	destroy_window_and_display(t_game *g)
 		mlx_destroy_window(g->mlx.context, g->mlx.win);
 		g->mlx.win = NULL;
 	}
-	mlx_destroy_display(g->mlx.context);
-	free(g->mlx.context);
+	mlx_destroy_context_safe(g->mlx.context);
 	g->mlx.context = NULL;
 }
 

@@ -19,9 +19,9 @@ static void	toggle_mouse(t_game *game_dt)
 	game_dt->inp.mouse_ready = 0;
 	game_dt->inp.mouse_lock = 0;
 	if (game_dt->inp.mouse_on)
-		mlx_mouse_hide(game_dt->mlx.context, game_dt->mlx.win);
+		mlx_mouse_hide_safe(game_dt->mlx.context, game_dt->mlx.win);
 	else
-		mlx_mouse_show(game_dt->mlx.context, game_dt->mlx.win);
+		mlx_mouse_show_safe(game_dt->mlx.context, game_dt->mlx.win);
 }
 
 int	on_key_press(int key, void *param)
@@ -30,10 +30,7 @@ int	on_key_press(int key, void *param)
 
 	game_dt = (t_game *)param;
 	if (key == K_ESC)
-	{
-		destroy(game_dt);
-		exit(0);
-	}
+		quit_game(game_dt, 0);
 	if (key == K_M)
 		toggle_mouse(game_dt);
 	if (key == K_W || key == K_UP)
