@@ -1,6 +1,6 @@
-# Cub3D — Raycasting Engine
+# Raycasting Rendering Engine
 
-A 3D raycasting engine in C inspired by Wolfenstein 3D.
+A real-time 3D rendering engine written in C using raycasting techniques, inspired by early FPS games like Wolfenstein 3D.
 
 ## 🧠 Overview
 
@@ -15,20 +15,21 @@ It focuses on graphics programming, mathematical transformations, and real-time 
 
 - `.cub` parsing (textures, colors, player spawn, doors)
 - Robust map validation (invalid characters, duplicates, open maps, door placement)
-- Real-time wall and door rendering (MiniLibX)
+- Real-time textured wall and door rendering using raycasting
 - Player movement, rotation, mouse look, and minimap
 
 ## 🛠 Tech Stack
 
 - C
 - MiniLibX
-- Raycasting algorithm
+- Raycasting algorithm (DDA)
 - Trigonometry and linear algebra
 
 ## 🏗 Architecture
 
 - **Parser** — reads `.cub` files and validates map/config  
-- **Raycasting Engine** — casts rays and computes wall distances  
+- **Raycasting Engine** — casts rays and computes wall distances
+- **Rendering Pipeline** — converts 2D map data into a 3D projection using raycasting
 - **Renderer** — draws walls, textures, and minimap  
 - **Input System** — handles movement, rotation, and interaction
 - **Game Loop** — handles frame updates and rendering cycle
